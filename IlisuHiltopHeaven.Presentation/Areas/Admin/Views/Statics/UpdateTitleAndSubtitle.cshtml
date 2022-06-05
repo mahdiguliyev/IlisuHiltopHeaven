@@ -1,0 +1,121 @@
+﻿@model IlisuHiltopHeaven.Presentation.Areas.Admin.Models.TitleAndSubtitleUpdateViewModel
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "İkinci Bölmə, Xidmətlər, Ekoturizm";
+}
+
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <div class="card mt-1 mb-1">
+            <div class="card-header">
+                <h4 class="text-center"><span class="fas fa-edit"></span> İkinci Bölmə, Xidmətlər, Ekoturizm</h4>
+            </div>
+            <div class="card-body">
+                <form asp-controller="statics" asp-action="updatetitleandsubtitle" method="post" id="form-titleandsubtitle-update">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="LanguageGroupId" value="@(Model?.LanguageGroupId == null ? "" : Model.LanguageGroupId.ToString())" />
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <h3>Az dili</h3>
+                            <label asp-for="TitleAz1"></label>
+                            <input class="form-control" asp-for="TitleAz1" />
+                            <span class="text-danger" asp-validation-for="TitleAz1"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <h3>Eng dili</h3>
+                            <label asp-for="TitleEn1"></label>
+                            <input class="form-control" asp-for="TitleEn1" />
+                            <span class="text-danger" asp-validation-for="TitleEn1"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <h3>Rus dili</h3>
+                            <label asp-for="TitleRu1"></label>
+                            <input class="form-control" asp-for="TitleRu1" />
+                            <span class="text-danger" asp-validation-for="TitleRu1"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="SubtitleAz1"></label>
+                            <textarea class="form-control" asp-for="SubtitleAz1"></textarea>
+                            <span class="text-danger" asp-validation-for="SubtitleAz1"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="SubtitleEn1"></label>
+                            <textarea class="form-control" asp-for="SubtitleEn1"></textarea>
+                            <span class="text-danger" asp-validation-for="SubtitleEn1"></span>
+                        </div>
+                        <div class="form-group col-md-4" style="padding-bottom: 30px;">
+                            <label asp-for="SubtitleRu1"></label>
+                            <textarea class="form-control" asp-for="SubtitleRu1"></textarea>
+                            <span class="text-danger" asp-validation-for="SubtitleRu1"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="TitleAz2"></label>
+                            <input class="form-control" asp-for="TitleAz2" />
+                            <span class="text-danger" asp-validation-for="TitleAz2"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="TitleEn2"></label>
+                            <input class="form-control" asp-for="TitleEn2" />
+                            <span class="text-danger" asp-validation-for="TitleEn2"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="TitleRu2"></label>
+                            <input class="form-control" asp-for="TitleRu2" />
+                            <span class="text-danger" asp-validation-for="TitleRu2"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="SubtitleAz2"></label>
+                            <textarea class="form-control" asp-for="SubtitleAz2"></textarea>
+                            <span class="text-danger" asp-validation-for="SubtitleAz2"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="SubtitleEn2"></label>
+                            <textarea class="form-control" asp-for="SubtitleEn2"></textarea>
+                            <span class="text-danger" asp-validation-for="SubtitleEn2"></span>
+                        </div>
+                        <div class="form-group col-md-4" style="padding-bottom: 30px;">
+                            <label asp-for="SubtitleRu2"></label>
+                            <textarea class="form-control" asp-for="SubtitleRu2"></textarea>
+                            <span class="text-danger" asp-validation-for="SubtitleRu2"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="TitleAz3"></label>
+                            <input class="form-control" asp-for="TitleAz3" />
+                            <span class="text-danger" asp-validation-for="TitleAz3"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="TitleEn3"></label>
+                            <input class="form-control" asp-for="TitleEn3" />
+                            <span class="text-danger" asp-validation-for="TitleEn3"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="TitleRu3"></label>
+                            <input class="form-control" asp-for="TitleRu3" />
+                            <span class="text-danger" asp-validation-for="TitleRu3"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="SubtitleAz3"></label>
+                            <textarea class="form-control" asp-for="SubtitleAz3"></textarea>
+                            <span class="text-danger" asp-validation-for="SubtitleAz3"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="SubtitleEn3"></label>
+                            <textarea class="form-control" asp-for="SubtitleEn3"></textarea>
+                            <span class="text-danger" asp-validation-for="SubtitleEn3"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="SubtitleRu3"></label>
+                            <textarea class="form-control" asp-for="SubtitleRu3"></textarea>
+                            <span class="text-danger" asp-validation-for="SubtitleRu3"></span>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <button type="submit" class="btn btn-primary"><span class="fas fa-save"></span> Yadda saxla</button>
+                            <a class="btn btn-info" asp-area="admin" asp-controller="home" asp-action="index"><span class="fas fa-arrow-left"></span> Geri</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

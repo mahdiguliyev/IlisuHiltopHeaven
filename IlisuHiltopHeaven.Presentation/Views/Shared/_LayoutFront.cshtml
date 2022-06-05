@@ -1,0 +1,145 @@
+﻿@using IlisuHiltopHeaven.Entities.Concrete
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.Extensions.Options
+
+@inject IViewLocalizer localizer
+@inject IOptions<RequestLocalizationOptions> locOptions
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var culture = requestCulture.RequestCulture.Culture;
+    var homePageInformationsCounter = 0;
+}
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/Front/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Front/css/lightbox.css" />
+    <link rel="stylesheet" href="~/Front/css/main.css" />
+    <link rel="stylesheet" href="~/Front/css/swiper-bundle.css" />
+    <link rel="stylesheet" href="~/Front/css/aos.css" />
+    <title>@ViewBag.Title | Ilisu Hiltop Heaven</title>
+</head>
+<body>
+    @{
+        var pageName = ViewBag.PageName;
+        //ViewBag["pageName"] = pageName;
+        var offices = ViewBag.Offices;
+        var socialMedias = ViewBag.SocialMedia;
+        var headerStyle = "";
+    }
+    <!-- HEADER -->
+    @if (pageName == "project") { headerStyle = "active-2"; } else if (pageName == "services") { headerStyle = "active-2"; } else if (pageName == "toure") { headerStyle = "active-3"; } else if (pageName == "contact") { headerStyle = "active-4"; }
+    <header class="w-100 header @headerStyle">
+        @{ headerStyle = ""; }
+        @{
+            await Html.RenderPartialAsync("_MainMenuPartial", (SocialMedia)socialMedias, new ViewDataDictionary(ViewData) { { "pageUrl", pageName } });
+        }
+    </header>
+
+    @RenderBody()
+
+    <!-- FOOTER  -->
+    <footer class="footer w-100 pt-5">
+        <div class="container-xl py-5">
+            <div class="footer__top">
+                <div class="footer__top--logo text-center mb-4">
+                    @if (culture.Name.StartsWith("az"))
+                    {
+                        <img src="~/Front/images/hero-logo.svg" alt="" />
+                    }
+                    else if (culture.Name.StartsWith("en"))
+                    {
+                        <img src="~/Front/images/Logo_ENG.svg" alt="" />
+                    }
+                    else if (culture.Name.StartsWith("ru"))
+                    {
+                        <img src="~/Front/images/Logo_ru.svg" alt="" />
+                    }
+                    @*<img src="~/Front/images/hero-logo.svg" alt="" data-aos="fade-up" data-aos-duration="500" />*@
+                </div>
+                <div class="footer__top--title-1 text-center text-white" data-aos="fade-up" data-aos-duration="500">
+                    @localizer["HaveQuestion"]
+                </div>
+                <div class="footer__top--title-2 text-center text-white" data-aos="fade-up" data-aos-duration="500">
+                    @localizer["CallUs"]
+                </div>
+            </div>
+            <div class="footer__number my-5">
+                <span data-aos="fade-up" class="text-center text-white d-block py-5"><a href="tel:@socialMedias.PhoneNumber" style="text-decoration:none;" class="text-white">@socialMedias.PhoneNumber</a></span>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6 footer__adress">
+                    @foreach (var office in offices)
+                    {
+                        <span class="footer__adress--title text-white " data-aos="fade-up" data-aos-duration="500">@office.OfficeName</span>
+                        <div class="row mt-2">
+                            <div class="col-sm-12 col-lg-6" data-aos="fade-up" data-aos-duration="500">
+                                <span>
+                                    @office.Address
+                                </span>
+                            </div>
+                            <div class="col-sm-12 col-lg-6" data-aos="fade-up" data-aos-duration="500">
+                                <span> @office.Number1 </span> <br />
+                                <span> @office.Email </span>
+                            </div>
+                        </div>
+                        <br />
+                    }
+                </div>
+                <div class="col-sm-12 col-md-6 mt-4 mt-md-0">
+                    <span class="footer__adress--title" data-aos="fade-up" data-aos-duration="500">@localizer["SocialMedias"]</span>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <div class="footer__social">
+                                <a href="@socialMedias.WhatsappUrl" data-aos="fade-up" data-aos-duration="500">
+                                    <svg>
+                                        <use xlink:href="/Front/images/sprite.svg#icon-whatsapp"></use>
+                                    </svg>
+                                </a>
+                                <a href="@socialMedias.InstagramUrl" data-aos="fade-up" data-aos-duration="500">
+                                    <svg>
+                                        <use xlink:href="/Front/images/sprite.svg#icon-instagram"></use>
+                                    </svg>
+                                </a>
+                                <a href="@socialMedias.FacebookUrl" data-aos="fade-up" data-aos-duration="500">
+                                    <svg>
+                                        <use xlink:href="/Front/images/sprite.svg#icon-facebook"></use>
+                                    </svg>
+                                </a>
+                                <a href="@socialMedias.YoutubeUrl" data-aos="fade-up" data-aos-duration="500">
+                                    <svg>
+                                        <use xlink:href="/Front/images/sprite.svg#icon-youtube"></use>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-100" style="background-color: #013a37">
+            <div class="container-xl py-2">
+                <span class="text-white footer__copyright">© Ilisu Hilltop Heaven</span>
+            </div>
+        </div>
+    </footer>
+    <!-- FOOTER -->
+</body>
+
+<script src="~/Front/js/bootstrap.bundle.js"></script>
+<script src="~/Front/js/jquery.min.js"></script>
+<script src="~/Front/js/lightbox.js"></script>
+<script src="~/Front/js/swiper-bundle.js"></script>
+<script src="~/Front/js/main.js"></script>
+<script src="~/Front/js/aos.js"></script>
+@await Component.InvokeAsync("NToastNotify")
+@await RenderSectionAsync("Scripts", false)
+<script>
+    AOS.init();
+</script>
+</html>

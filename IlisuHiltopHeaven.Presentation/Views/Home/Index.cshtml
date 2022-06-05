@@ -1,0 +1,470 @@
+﻿@model IlisuHiltopHeaven.Presentation.Models.HomePageViewModel
+@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.Extensions.Options
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer localizer
+
+@inject IOptions<RequestLocalizationOptions> locOptions
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var culture = requestCulture.RequestCulture.Culture;
+    var homePageInformationsCounter = 0;
+}
+@{
+    Layout = "_LayoutFront";
+    ViewBag.Title = localizer["HomePage"];
+    ViewBag.PageName = "homepage";
+    ViewBag.Offices = Model.Offices;
+    ViewBag.SocialMedia = Model.SocialMedia;
+    var radioId = "countrycode";
+}
+
+<!-- HERO -->
+@foreach (var homePage in Model.HomePages)
+{
+    <div class="w-100 hero" style="background: url(/img/@homePage.Image); background-size: cover; background-position: center center; background-attachment: fixed;">
+        <div class="container-xl hero__container">
+            <div class="hero__logo" data-aos="fade-up">
+                @if (culture.Name.StartsWith("az"))
+                {
+                    <a asp-controller="home" asp-action="index"><img src="~/Front/images/Logo_AZ.svg" alt="" /></a>
+                }
+                else if (culture.Name.StartsWith("en"))
+                {
+                    <a asp-controller="home" asp-action="index"><img src="~/Front/images/Logo_ENG.svg" alt="" /></a>
+
+                }
+                else if (culture.Name.StartsWith("ru"))
+                {
+                    <a asp-controller="home" asp-action="index"><img src="~/Front/images/Logo_ru.svg" alt="" /></a>
+                }
+            </div>
+            <h1 class="hero__title my-5" style="max-width: 900px" data-aos="fade-up">
+                @homePage.Title
+            </h1>
+            <form asp-controller="home" asp-action="ordercall" method="post" class="form" name="phoneNumberCode" id="phoneNumberCode" data-aos="fade-up">
+                <div class="form__item">
+                    <input name="phoneNumber" id="phoneNumber" type="text"
+                           class="form__item--input"
+                           placeholder="+994 00 000 00 00" />
+                </div>
+                <div class="form__item--btn">
+                    <button type="submit" id="submit">@localizer["ContactButton"]</button>
+                </div>
+            </form>
+            <span class="hero__desc text-white mt-3" data-aos="fade-up">@localizer["ContactDesc"]</span>
+        </div>
+    </div>
+}
+<!-- HERO -->
+@{
+    await Html.RenderPartialAsync("_Sidebar", Model.SocialMedia, new ViewDataDictionary(ViewData) { { "pageUrl", ViewBag.PageName } });
+}
+
+<main id="main">
+    <!-- BÖLÜM 1-->
+    <section class="container-fluid bg-white py-5">
+        <div class="container-xl">
+            <div class="row my-5">
+                <div class="col-md-12 col-lg-6 mb-4 mb-lg-0" data-aos="fade-up" data-aos-duration="500">
+                    <h1 class="title-secondary">
+                        @Model.TitleAndSubtitle.Title1
+                    </h1>
+                </div>
+                <div class="col-md-12 col-lg-6" data-aos="fade-up" data-aos-duration="500">
+                    <p class="paragraph">
+                        @Model.TitleAndSubtitle.Subtitle1
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- BÖLÜM 1 -->
+    <!-- BÖLÜM 2  -->
+    <section class="container-fluid bg-white">
+        <div class="container-xl">
+            <div class="row">
+                <div class="swiper-container mySwiper" style="max-height: 650px; width: 100%;">
+                    <div class="swiper-wrapper">
+                        @foreach (var banner in Model.Banners)
+                        {
+                            <div class="swiper-slide">
+                                <img class="w-100 h-100" src="~/img/@banner.ImageOne" alt="" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="w-100 h-100" src="~/img/@banner.ImageTwo" alt="" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="w-100 h-100" src="~/img/@banner.ImageThree" alt="" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="w-100 h-100" src="~/img/@banner.ImageFour" alt="" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="w-100 h-100" src="~/img/@banner.ImageFive" alt="" />
+                            </div>
+                        }
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- BÖLÜM 2-->
+    <!-- BÖLÜM 3 -->
+    <section class="w-100 bg-white" style="padding: 100px 0;">
+        @foreach (var hpinf in Model.HomePageInformation)
+        {
+            if (homePageInformationsCounter == 1)
+            {
+                <div class="container-xl">
+                    <div class="row ">
+                        <div class="col-md-12 col-lg-6 ">
+                            <div class="">
+                                <img class="img-radius" data-aos="fade-up" data-aos-duration="500" src="~/img/@hpinf.Image" alt="" />
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-6">
+                            <h1 class="title-primary" data-aos="fade-up" data-aos-duration="500">
+                                @hpinf.Title
+                            </h1>
+                            <p class="paragraph" data-aos="fade-up" data-aos-duration="500">
+                                @hpinf.Description
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="container-xl py-5">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-6 order-1 order-lg-0">
+                            <h1 class="title-primary" data-aos="fade-up" data-aos-duration="500">
+                                @hpinf.Title
+                            </h1>
+                            <p class="paragraph" data-aos="fade-up" data-aos-duration="500">
+                                @hpinf.Description
+                            </p>
+                        </div>
+                        <div class="col-md-12 col-lg-6 order-0 order-lg-1">
+                            <div>
+                                <img class="img-radius" data-aos="fade-up" data-aos-duration="500" src="~/img/@hpinf.Image" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            homePageInformationsCounter += 1;
+        }
+    </section>
+    <!-- BÖLÜM 3 -->
+    <!-- BÖLÜM 4 -->
+    <section class="w-100 py-5 section-2">
+        @foreach (var advantageOfPurchasing in Model.AdvantageOfPurchasings)
+        {
+            <div class="container-xl py-5">
+                <h1 class="title-primary text-center text-white mx-auto mb-3"
+                    style="max-width: 500px;" data-aos="fade-up" data-aos-duration="500">
+                    @advantageOfPurchasing.MainTitle
+                </h1>
+                <div class="row section-2__row">
+
+                    <div class="col-lg-3" data-aos="fade-up" data-aos-duration="500">
+                        <div class="section-2__card">
+                            <div class="section-2__card--icon">
+                                <svg>
+                                    <use xlink:href="/Front/images/@advantageOfPurchasing.Image1"></use>
+                                </svg>
+                            </div>
+                            <h2 class="section-2__card--title">@advantageOfPurchasing.Title1</h2>
+                            <p class="section-2__card--desc">
+                                @advantageOfPurchasing.Description1
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3" data-aos="fade-up" data-aos-duration="500">
+                        <div class="section-2__card">
+                            <div class="section-2__card--icon">
+                                <svg>
+                                    <use xlink:href="/Front/images/@advantageOfPurchasing.Image2"></use>
+                                </svg>
+                            </div>
+                            <h2 class="section-2__card--title">@advantageOfPurchasing.Title2</h2>
+                            <p class="section-2__card--desc">
+                                @advantageOfPurchasing.Description2
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3" data-aos="fade-up" data-aos-duration="500">
+                        <div class="section-2__card">
+                            <div class="section-2__card--icon">
+                                <svg>
+                                    <use xlink:href="/Front/images/@advantageOfPurchasing.Image3"></use>
+                                </svg>
+                            </div>
+                            <h2 class="section-2__card--title">@advantageOfPurchasing.Title3</h2>
+                            <p class="section-2__card--desc">
+                                @advantageOfPurchasing.Description3
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </section>
+    <!-- BÖLÜM 4 -->
+    <!-- BÖLÜM 5-->
+    <section class="w-100 py-5 bg-white">
+        @foreach (var housingProject in Model.HousingProjects)
+        {
+            <div class="container-xl py-5">
+                <h1 class="mb-4 title-primary text-center mx-auto" data-aos="fade-up" data-aos-duration="500">
+                    @housingProject.MainTitle
+                </h1>
+                <div class="paragraph mx-auto mb-4 li-chircle"
+                     style="max-width: 800px" data-aos="fade-up" data-aos-duration="500">
+                    @Html.Raw(@housingProject.Description)
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-sm-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="500">
+                        <div class="card bg-transparent border-0">
+                            <div class="card-header border-0 bg-transparent">
+                                <a href="~/img/@housingProject.Image1" data-lightbox="image-1">
+                                    <img src="~/img/@housingProject.Image1"
+                                         alt="" style="width:100%" />
+                                </a>
+                            </div>
+                            <div class="card-body border-0 text-center">
+                                <span class="text-muted f-size-18">@housingProject.floor1</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="500">
+                        <div class="card bg-transparent border-0">
+                            <div class="card-header border-0 bg-transparent">
+                                <a href="~/img/@housingProject.Image2" data-lightbox="image-1">
+                                    <img src="~/img/@housingProject.Image2"
+                                         alt="" style="width:100%" />
+                                </a>
+                            </div>
+                            <div class="card-body border-0 text-center">
+                                <span class="text-muted f-size-18">@housingProject.floor2</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-duration="500">
+                        <div class="card bg-transparent border-0">
+                            <div class="card-header border-0 bg-transparent">
+                                <a href="~/img/@housingProject.Image3" data-lightbox="image-1">
+                                    <img src="~/img/@housingProject.Image3"
+                                         alt="" style="width:100%" />
+                                </a>
+                            </div>
+                            <div class="card-body border-0 text-center">
+                                <span class="text-muted f-size-18">@housingProject.floor3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-3__btn">
+                    <a class="my-btn btn-circle btn-green-1" asp-controller="project" asp-action="index" style="text-decoration:none;color:white;" data-aos="fade-up" data-aos-duration="500">
+
+                        @localizer["CheckProject"]
+
+                    </a>
+                </div>
+            </div>
+        }
+    </section>
+    <!-- BÖLÜM 5 -->
+    <!-- BÖLÜM 6 -->
+    <section class="w-100 py-5" style="background-color: #f2f2f1">
+        <div class="container-xl py-5">
+            <h1 style="max-width: 600px"
+                class="title-primary mb-4 text-center mx-auto" data-aos="fade-up" data-aos-duration="500">
+                @Model.TitleAndSubtitle.Title2
+            </h1>
+            <p class="text-center paragraph mx-auto"
+               style="max-width: 500px; margin-bottom: 80px" data-aos="fade-up" data-aos-duration="500">
+                @Model.TitleAndSubtitle.Subtitle2
+            </p>
+            <div class="row services">
+                @foreach (var service in Model.Services)
+                {
+                    <div class="col-sm-6 col-md-3 col-lg-2 mb-4" data-aos="fade-up" data-aos-duration="500">
+                        <div class="card border-0 services__card">
+                            <svg class="services__card--icon">
+                                <use xlink:href="/Front/images/@service.Image"></use>
+                            </svg>
+                            <h2 class="services__card--title f-size-16 text-center">
+                                @service.Title
+                            </h2>
+                        </div>
+                    </div>
+                }
+                <div class="col-sm-6 col-md-3 col-lg-2 mb-4" data-aos="fade-up" data-aos-duration="500">
+                    <a asp-controller="home" asp-action="download" class="card border-0 services__card services__card--pdf">
+                        <svg class="services__card--icon">
+                            <use xlink:href="/Front/images/sprite.svg#icon-big-12"></use>
+                        </svg>
+                        <h2 class="services__card--title f-size-16 text-center">
+                            @localizer["PdfDownload"]
+                        </h2>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-4">
+                <a asp-controller="services" asp-action="index" style="text-decoration:none;color:white;">
+                    <button class="my-btn btn-circle btn-green-1" data-aos="fade-up" data-aos-duration="500">
+                        @localizer["CheckServices"]
+                    </button>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- BÖLÜM 6 -->
+    <!-- BÖLÜM 7 -->
+    <section class="w-100 pt-5" style="background: #7aa6ad">
+        <div class="container pt-5">
+            <div class="row">
+                <div class="col-sm-12 col-lg-6">
+                    <h1 class="title-primary text-white" data-aos="fade-up" data-aos-duration="500">
+                        @Model.TitleAndSubtitle.Title3
+                    </h1>
+                </div>
+                <div class="col-sm-12 col-lg-6 mt-4 mt-lg-0">
+                    <p class="paragraph text-white" data-aos="fade-up" data-aos-duration="500">
+                        @Model.TitleAndSubtitle.Subtitle3
+                    </p>
+                </div>
+            </div>
+            <div class="row py-5">
+                <div class="youtube-link pb-5">
+                    @foreach (var banner in Model.Banners)
+                    {
+                        @Html.Raw(@banner.VideoUrl)
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- BÖLÜM 7 -->
+    <!-- BÖLÜM 8-->
+    <section class="w-100 bg-white py-5">
+        <div class="container py-5">
+            <div class="row">
+                @foreach (var sellCondition in Model.SellConditions)
+                {
+                    <div class="col-md-12 col-lg-6">
+                        <h1 class="title-primary" style="max-width: 300px" data-aos="fade-up" data-aos-duration="500">
+                            @sellCondition.Title
+                        </h1>
+                    </div>
+                    <div class="col-md-12 col-lg-6 mt-4 mt-lg-0">
+                        <p class="paragraph" data-aos="fade-up" data-aos-duration="500">
+                            @sellCondition.Description
+                        </p>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+    <!-- BÖLÜM 8 -->
+    <!-- BÖLÜM 9 -->
+    <section class="w-100 py-5" style="background-color: #fafafa">
+        @foreach (var conditionOfPurchasing in Model.ConditionsOfPurchasings)
+        {
+            <div class="container-xl py-5">
+                <h1 class="title-primary text-center mx-auto"
+                    style="max-width: 500px" data-aos="fade-up" data-aos-duration="500">
+                    @conditionOfPurchasing.MainTitle
+                </h1>
+                <div class="row mt-5 justify-content-center buy">
+                    <div class="col-sm-12 col-lg-3 mb-4" data-aos="fade-up" data-aos-duration="500">
+                        <div class="buy__card">
+                            <div class="buy__card--icon">
+                                <svg>
+                                    <use xlink:href="/Front/images/@conditionOfPurchasing.Image1"></use>
+                                </svg>
+                            </div>
+                            <h2 class="buy__card--title text-center my-4">
+                                @conditionOfPurchasing.Title1
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-3 mb-4" data-aos="fade-up" data-aos-duration="500">
+                        <div class="buy__card">
+                            <div class="buy__card--icon">
+                                <svg>
+                                    <use xlink:href="/Front/images/@conditionOfPurchasing.Image2"></use>
+                                </svg>
+                            </div>
+                            <h2 class="buy__card--title text-center my-4">
+                                @conditionOfPurchasing.Title2
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-lg-3 mb-4" data-aos="fade-up" data-aos-duration="500">
+                        <div class="buy__card">
+                            <div class="buy__card--icon">
+                                <svg>
+                                    <use xlink:href="/Front/images/@conditionOfPurchasing.Image3"></use>
+                                </svg>
+                            </div>
+                            <h2 class="buy__card--title text-center my-4">
+                                @conditionOfPurchasing.Title3
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </section>
+    <!-- BÖLÜM 9 Bitiş -->
+</main>
+
+@section Scripts{
+    <script>
+        $(function () {
+            $('#phoneNumberCode').on('submit', function (e) {
+                e.preventDefault();
+                var value = e.target
+                var data = new FormData(e.target)
+                var phoneNumber = document.getElementById('phoneNumber').value;
+                //var prefix = document.getElementById('prefix').value;
+                //var phoneno = /^\(?([0-9]{2})\)?[- ]?([0-9]{3})[- ]?([0-9]{4})$/;
+                var rgx = /^\+(?:[0-9] ?){6,14}[0-9]$/;
+                var regex = new RegExp(rgx)
+                if (phoneNumber != null) {
+                    if (regex.test(phoneNumber)) {
+                        $.ajax({
+                            method: 'POST',
+                            processData: false,
+                            contentType: false,
+                            url: '/home/ordercall',
+                            data: data,
+                            success: function (res) {
+                                document.getElementById('phoneNumber').value = '';
+                                toastr.success("*Zəng sifariş edildi!</br> *Call is ordered successfully!</br> *Звонок заказан успешно!");
+                            },
+                            error: function (res) {
+                                toastr.error('500 Internal Error!', 'Error!');
+                            }
+                        })
+                    }
+                    else {
+                        toastr.error('*Nömrəni düzgün daxil edin!</br>*Enter the number correctly</br>*Введите номер правильно!</br> Format: +99400 000 00 00', 'Error!');
+                        return false;
+                    }
+                }
+                else {
+                    toastr.error("* Prefiks və mobil nömrə boş ola bilməz!</br > * Prefix and phone number cannot be null!</br > * Префикс и номер телефона не могут быть нулевыми!");
+                }
+            })
+        })
+    </script>
+}

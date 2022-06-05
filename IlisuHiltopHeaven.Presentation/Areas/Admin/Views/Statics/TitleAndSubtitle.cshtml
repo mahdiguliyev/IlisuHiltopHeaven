@@ -1,0 +1,67 @@
+﻿@model IlisuHiltopHeaven.Presentation.Areas.Admin.Models.TitleAndSubtitleViewModel
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Başlıq və Alt Başlıqlar";
+}
+<ol class="breadcrumb mb-3 mt-2">
+    <li class="breadcrumb-item"><a asp-area="admin" asp-controller="home" asp-action="index">Admin</a></li>
+    <li class="breadcrumb-item active"><a asp-area="admin" asp-controller="statics" asp-action="titleandsubtitle">Başlıq və Alt Başlıqlar</a></li>
+</ol>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+        Başlıq və Alt Başlıqlar
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="titleAndSubtitleTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Başlıq 1</th>
+                        <th>Başlıq 2</th>
+                        <th>Başlıq 3</th>
+                        <th>Dil</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Başlıq 1</th>
+                        <th>Başlıq 2</th>
+                        <th>Başlıq 3</th>
+                        <th>Dil</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var titleAndSubtitle in Model.TitleAndSubtitles)
+                    {
+                        <tr name="@titleAndSubtitle.Id">
+                            <td>@titleAndSubtitle.Id</td>
+                            <td>@titleAndSubtitle.Title1</td>
+                            <td>@titleAndSubtitle.Title2</td>
+                            <td>@titleAndSubtitle.Title3</td>
+                            <td>@titleAndSubtitle.Language.LanguageCode</td>
+                            <td>
+                                <a asp-area="admin" asp-controller="statics" asp-action="updatetitleandsubtitle" asp-route-titleAndSubtitleId="@titleAndSubtitle.Id" class="btn btn-primary btn-sm btn-update" data-id="@titleAndSubtitle.Id"><span class="fas fa-edit"></span></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            const dataTable = $('#titleAndSubtitleTable').DataTable({});
+        });
+    </script>
+}
+@section Styles{
+
+}

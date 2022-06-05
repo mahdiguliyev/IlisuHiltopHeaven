@@ -1,0 +1,256 @@
+﻿@model IlisuHiltopHeaven.Presentation.Areas.Admin.Models.ProjectUpdateViewModel
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Proyekt Məlumatları";
+}
+
+<div class="row">
+    <div class="card mt-1 mb-1">
+        <div class="card-header">
+            <h4 class="text-center"><span class="fas fa-edit"></span> Layihə Məlumatlarını Yenilə</h4>
+        </div>
+        <div class="card-body">
+            <form asp-controller="statics" asp-action="updateprojectsetting" method="post" enctype="multipart/form-data" id="form-generalsettings-update">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="LanguageGroupId" value="@(Model?.LanguageGroupId == null ? "" : Model.LanguageGroupId.ToString())" />
+                <div class="form-row">
+
+                    <div class="form-group col-md-4">
+                        <h3>Az dili</h3>
+                        <label asp-for="MainPlanAz"></label>
+                        <textarea asp-for="MainPlanAz" class="form-control"></textarea>
+                        <span class="text-danger" asp-validation-for="MainPlanAz"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <h3>Eng dili</h3>
+                        <label asp-for="MainPlanEn"></label>
+                        <textarea asp-for="MainPlanEn" class="form-control"></textarea>
+                        <span class="text-danger" asp-validation-for="MainPlanEn"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <h3>Rus dili</h3>
+                        <label asp-for="MainPlanRu"></label>
+                        <textarea asp-for="MainPlanRu" class="form-control"></textarea>
+                        <span class="text-danger" asp-validation-for="MainPlanRu"></span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label asp-for="ImageOne"></label>
+                        <input asp-for="ImageOne" type="hidden" id="thumbnail" class="form-control" />
+                        <img src="~/img/@Model.ImageOne" style="height:240px;width:580px;object-fit:cover;" />
+                        <span class="text-danger" asp-validation-for="ImageOne"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="ImageTwo"></label>
+                        <input asp-for="ImageTwo" type="hidden" id="thumbnail" class="form-control" />
+                        <img src="~/img/@Model.ImageTwo" style="height:240px;width:580px;object-fit:cover;" />
+                        <span class="text-danger" asp-validation-for="ImageTwo"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="ImageFileOne"></label>
+                        <input type="file" class="form-control" asp-for="ImageFileOne" accept="image/*" />
+                        <span class="text-danger" asp-validation-for="ImageFileOne"></span>
+                    </div>
+                    <div class="form-group col-md-6" style="padding-bottom:30px;">
+                        <label asp-for="ImageFileTwo"></label>
+                        <input type="file" class="form-control" asp-for="ImageFileTwo" accept="image/*" />
+                        <span class="text-danger" asp-validation-for="ImageFileTwo"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="ImageThree"></label>
+                        <input asp-for="ImageThree" type="hidden" id="thumbnail" class="form-control" />
+                        <img src="~/img/@Model.ImageThree" class="object-fit:cover;" />
+                        <span class="text-danger" asp-validation-for="ImageThree"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="ImageFour"></label>
+                        <input asp-for="ImageFour" type="hidden" id="thumbnail" class="form-control" />
+                        <img src="~/img/@Model.ImageFour" class="object-fit:cover;" />
+                        <span class="text-danger" asp-validation-for="ImageFour"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="ImageFileThree"></label>
+                        <input type="file" class="form-control" asp-for="ImageFileThree" accept="image/*" />
+                        <span class="text-danger" asp-validation-for="ImageFileThree"></span>
+                    </div>
+                    <div class="form-group col-md-6" style="padding-bottom:30px;">
+                        <label asp-for="ImageFileFour"></label>
+                        <input type="file" class="form-control" asp-for="ImageFileFour" accept="image/*" />
+                        <span class="text-danger" asp-validation-for="ImageFileFour"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="ImageFive"></label>
+                        <input asp-for="ImageFive" type="hidden" id="thumbnail" class="form-control" />
+                        <img src="~/img/@Model.ImageFive" style="height:240px;width:580px;object-fit:cover;" />
+                        <span class="text-danger" asp-validation-for="ImageFive"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="ImageSix"></label>
+                        <input asp-for="ImageSix" type="hidden" id="thumbnail" class="form-control" />
+                        <img src="~/img/@Model.ImageSix" style="height:240px;width:580px;object-fit:cover;" />
+                        <span class="text-danger" asp-validation-for="ImageSix"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="ImageFileFive"></label>
+                        <input type="file" class="form-control" asp-for="ImageFileFive" accept="image/*" />
+                        <span class="text-danger" asp-validation-for="ImageFileFive"></span>
+                    </div>
+                    <div class="form-group col-md-6" style="padding-bottom:30px;">
+                        <label asp-for="ImageFileSix"></label>
+                        <input type="file" class="form-control" asp-for="ImageFileSix" accept="image/*" />
+                        <span class="text-danger" asp-validation-for="ImageFileSix"></span>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label asp-for="TitleAz1"></label>
+                        <input class="form-control" asp-for="TitleAz1" />
+                        <span class="text-danger" asp-validation-for="TitleAz1"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="TitleEn1"></label>
+                        <input class="form-control" asp-for="TitleEn1" />
+                        <span class="text-danger" asp-validation-for="TitleEn1"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="TitleRu1"></label>
+                        <input class="form-control" asp-for="TitleRu1" />
+                        <span class="text-danger" asp-validation-for="TitleRu1"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="ComlexLocAz"></label>
+                        <textarea asp-for="ComlexLocAz" class="form-control"></textarea>
+                        <span class="text-danger" asp-validation-for="ComlexLocAz"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="ComlexLocEn"></label>
+                        <textarea asp-for="ComlexLocEn" class="form-control"></textarea>
+                        <span class="text-danger" asp-validation-for="ComlexLocEn"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="ComlexLocRu"></label>
+                        <textarea asp-for="ComlexLocRu" class="form-control"></textarea>
+                        <span class="text-danger" asp-validation-for="ComlexLocRu"></span>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label asp-for="MapUrl"></label>
+                        <input class="form-control" asp-for="MapUrl" />
+                        <span class="text-danger" asp-validation-for="MapUrl"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="TitleAz2"></label>
+                        <input class="form-control" asp-for="TitleAz2" />
+                        <span class="text-danger" asp-validation-for="TitleAz2"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="TitleEn2"></label>
+                        <input class="form-control" asp-for="TitleEn2" />
+                        <span class="text-danger" asp-validation-for="TitleEn2"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="TitleRu2"></label>
+                        <input class="form-control" asp-for="TitleRu2" />
+                        <span class="text-danger" asp-validation-for="TitleRu2"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="BuildingProjectAz"></label>
+                        <textarea asp-for="BuildingProjectAz" id="DescAz" class="form-control"></textarea>
+                        <span class="text-danger" asp-validation-for="BuildingProjectAz"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="BuildingProjectEn"></label>
+                        <textarea asp-for="BuildingProjectEn" id="DescEn" class="form-control"></textarea>
+                        <span class="text-danger" asp-validation-for="BuildingProjectEn"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="BuildingProjectRu"></label>
+                        <textarea asp-for="BuildingProjectRu" id="DescRu" class="form-control"></textarea>
+                        <span class="text-danger" asp-validation-for="BuildingProjectRu"></span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label asp-for="MainImageOne"></label>
+                        <input asp-for="MainImageOne" type="hidden" id="thumbnail" class="form-control" />
+                        <img src="~/img/@Model.MainImageOne" style="height: 240px; width: 580px;object-fit: cover;" />
+                        <span class="text-danger" asp-validation-for="MainImageOne"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="MainImageTwo"></label>
+                        <input asp-for="MainImageTwo" type="hidden" id="thumbnail" class="form-control" />
+                        <img src="~/img/@Model.MainImageTwo" style="height: 240px; width: 580px; object-fit: cover;" />
+                        <span class="text-danger" asp-validation-for="MainImageTwo"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="MainImageFileOne"></label>
+                        <input type="file" class="form-control" asp-for="MainImageFileOne" accept="image/*" />
+                        <span class="text-danger" asp-validation-for="MainImageFileOne"></span>
+                    </div>
+                    <div class="form-group col-md-6" style="padding-bottom:30px;">
+                        <label asp-for="MainImageFileTwo"></label>
+                        <input type="file" class="form-control" asp-for="MainImageFileTwo" accept="image/*" />
+                        <span class="text-danger" asp-validation-for="MainImageFileTwo"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="MainImageThree"></label>
+                        <input asp-for="MainImageThree" type="hidden" id="thumbnail" class="form-control" />
+                        <img src="~/img/@Model.MainImageThree" style="height: 240px; width: 580px; object-fit: cover;" />
+                        <span class="text-danger" asp-validation-for="MainImageThree"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="MainImageFour"></label>
+                        <input asp-for="MainImageFour" type="hidden" id="thumbnail" class="form-control" />
+                        <img src="~/img/@Model.MainImageFour" style="height: 240px; width: 580px; object-fit: cover;" />
+                        <span class="text-danger" asp-validation-for="MainImageFour"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="MainImageFileThree"></label>
+                        <input type="file" class="form-control" asp-for="MainImageFileThree" accept="image/*" />
+                        <span class="text-danger" asp-validation-for="MainImageFileThree"></span>
+                    </div>
+                    <div class="form-group col-md-6" style="padding-bottom:30px;">
+                        <label asp-for="MainImageFileFour"></label>
+                        <input type="file" class="form-control" asp-for="MainImageFileFour" accept="image/*" />
+                        <span class="text-danger" asp-validation-for="MainImageFileFour"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="MainImageFive"></label>
+                        <input asp-for="MainImageFive" type="hidden" id="thumbnail" class="form-control" />
+                        <img src="~/img/@Model.MainImageFive" style="height: 240px; width: 580px; object-fit: cover;" />
+                        <span class="text-danger" asp-validation-for="MainImageFive"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="MainImageSix"></label>
+                        <input asp-for="MainImageSix" type="hidden" id="thumbnail" class="form-control" />
+                        <img src="~/img/@Model.MainImageSix" style="height: 240px; width: 580px; object-fit: cover;" />
+                        <span class="text-danger" asp-validation-for="MainImageSix"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="MainImageFileFive"></label>
+                        <input type="file" class="form-control" asp-for="MainImageFileFive" accept="image/*" />
+                        <span class="text-danger" asp-validation-for="MainImageFileFive"></span>
+                    </div>
+                    <div class="form-group col-md-6" style="padding-bottom:30px;">
+                        <label asp-for="MainImageFileSix"></label>
+                        <input type="file" class="form-control" asp-for="MainImageFileSix" accept="image/*" />
+                        <span class="text-danger" asp-validation-for="MainImageFileSix"></span>
+                    </div>
+
+                    <div class="form-group col-md-12">
+                        <button type="submit" class="btn btn-primary"><span class="fas fa-save"></span> Yadda saxla</button>
+                        <a class="btn btn-info" asp-area="admin" asp-controller="home" asp-action="index"><span class="fas fa-arrow-left"></span> Geri</a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Front/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+        CKEDITOR.replace('DescAz');
+        CKEDITOR.replace('DescEn');
+        CKEDITOR.replace('DescRu');
+    </script>
+}

@@ -1,0 +1,61 @@
+﻿@model IlisuHiltopHeaven.Presentation.Areas.Admin.Models.SellConditionUpdateViewModel
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Satış Şərtləri";
+}
+
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <div class="card mt-1 mb-1">
+            <div class="card-header">
+                <h4 class="text-center"><span class="fas fa-edit"></span> Satış Şərtləri</h4>
+            </div>
+            <div class="card-body">
+                <form asp-controller="statics" asp-action="updatesellconditionsetting" method="post" id="form-generalsettings-update">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="LanguageGroupId" value="@(Model?.LanguageGroupId == null ? "" : Model.LanguageGroupId.ToString())" />
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <h2>Az dili</h2>
+                            <label asp-for="TitleAz"></label>
+                            <input class="form-control" asp-for="TitleAz" />
+                            <span class="text-danger" asp-validation-for="TitleAz"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <h2>Eng dili</h2>
+                            <label asp-for="TitleEn"></label>
+                            <input class="form-control" asp-for="TitleEn" />
+                            <span class="text-danger" asp-validation-for="TitleEn"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <h2>Rus dili</h2>
+                            <label asp-for="TitleRu"></label>
+                            <input class="form-control" asp-for="TitleRu" />
+                            <span class="text-danger" asp-validation-for="TitleRu"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="DescriptionAz"></label>
+                            <textarea asp-for="DescriptionAz" class="form-control"></textarea>
+                            <span class="text-danger" asp-validation-for="DescriptionAz"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="DescriptionEn"></label>
+                            <textarea asp-for="DescriptionEn" class="form-control"></textarea>
+                            <span class="text-danger" asp-validation-for="DescriptionEn"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="DescriptionRu"></label>
+                            <textarea asp-for="DescriptionRu" class="form-control"></textarea>
+                            <span class="text-danger" asp-validation-for="DescriptionRu"></span>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <button type="submit" class="btn btn-primary"><span class="fas fa-save"></span> Yadda saxla</button>
+                            <a class="btn btn-info" asp-area="admin" asp-controller="home" asp-action="index"><span class="fas fa-arrow-left"></span> Geri</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

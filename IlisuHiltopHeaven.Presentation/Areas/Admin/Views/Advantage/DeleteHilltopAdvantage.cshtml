@@ -1,0 +1,34 @@
+﻿@model IlisuHiltopHeaven.Entities.Concrete.AdvantageHilltop
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Hilltop Avantaj Sil";
+}
+
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <div class="card mt-1 mb-1">
+            <div class="card-header">
+                <h4 class="text-center"><span class="fas fa-edit"></span> Mövcud avantajı sil </h4>
+            </div>
+            <div class="card-body">
+                <form asp-area="admin" asp-controller="advantage" asp-action="deletehilltopadvantage" method="post" id="form-generalsettings-update">
+                    <input asp-for="Id" type="hidden" />
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label asp-for="Title"></label>
+                            <input asp-for="Title" type="text" class="form-control" disabled />
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label asp-for="LanguageId" for="advantageList"></label>
+                            <input asp-for="Language.LanguageCode" type="text" class="form-control" disabled />
+                        </div>
+                        <div class="form-group col-md-12">
+                            <button type="submit" class="btn btn-danger"><span class="fas fa-save"></span> Sil</button>
+                            <a class="btn btn-primary" asp-area="admin" asp-controller="advantage" asp-action="index"><span class="fas fa-times"></span> Geri</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

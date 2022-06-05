@@ -1,0 +1,70 @@
+﻿@model IList<IlisuHiltopHeaven.Entities.Concrete.HousingProject>
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Mənzillərin Layihəsi";
+}
+<ol class="breadcrumb mb-3 mt-2">
+    <li class="breadcrumb-item"><a asp-area="admin" asp-controller="home" asp-action="index">Admin</a></li>
+    <li class="breadcrumb-item active"><a asp-area="admin" asp-controller="housingproject" asp-action="index">Mənzillərin Layihəsi</a></li>
+</ol>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+        Mənzillərin Layihəsi
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="housingProjectTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Əsas Başlıq</th>
+                        <th>1-ci Mərtəbə</th>
+                        <th>2-ci Mərtəbə</th>
+                        <th>3-ci Mərtəbə</th>
+                        <th>İlk Şəkil</th>
+                        <th>Dil</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Əsas Başlıq</th>
+                        <th>1-ci Mərtəbə</th>
+                        <th>2-ci Mərtəbə</th>
+                        <th>3-ci Mərtəbə</th>
+                        <th>İlk Şəkil</th>
+                        <th>Dil</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var housingProject in Model)
+                    {
+                        <tr name="@housingProject.Id">
+                            <td>@housingProject.Id</td>
+                            <td>@housingProject.MainTitle</td>
+                            <td>@housingProject.floor1</td>
+                            <td>@housingProject.floor2</td>
+                            <td>@housingProject.floor3</td>
+                            <td><img src="~/img/@housingProject.Image1" class="my-image-table" /></td>
+                            <td>@housingProject.Language.LanguageCode</td>
+                            <td>
+                                <a asp-area="admin" asp-controller="housingproject" asp-action="update" asp-route-id="@housingProject.LanguageGroupId" class="btn btn-primary btn-sm btn-update" data-id="@housingProject.LanguageGroupId"><span class="fas fa-edit"></span></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            const dataTable = $('#housingProjectTable').DataTable({});
+        });
+    </script>
+}

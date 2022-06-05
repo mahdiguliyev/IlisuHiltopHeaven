@@ -1,0 +1,152 @@
+﻿@model IlisuHiltopHeaven.Presentation.Areas.Admin.Models.AdvantageViewModel
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Avantajlar";
+}
+<ol class="breadcrumb mb-3 mt-2">
+    <li class="breadcrumb-item"><a asp-area="admin" asp-controller="home" asp-action="index">Admin</a></li>
+    <li class="breadcrumb-item active"><a asp-area="admin" asp-controller="advantage" asp-action="index">Avantajlar</a></li>
+</ol>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+        Avantajlar
+    </div>
+    @*Advantages of Owner*@
+    <div class="card-body">
+        <div class="table-responsive">
+            <h3>Ev Sahibi</h3>
+            <table class="table table-bordered" id="advantageTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Url</th>
+                        <th>Dil</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Url</th>
+                        <th>Dil</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var advantage in Model.Advantages)
+                    {
+                        <tr name="@advantage.Id">
+                            <td>@advantage.Id</td>
+                            <td>@advantage.Title</td>
+                            <td>@advantage.Language.LanguageCode</td>
+                            <td>
+                                <a asp-area="admin" asp-controller="advantage" asp-action="update" asp-route-advantageId="@advantage.Id" class="btn btn-primary btn-sm btn-update" data-id="@advantage.Id"><span class="fas fa-edit"></span></a>
+                                <a asp-area="admin" asp-controller="advantage" asp-action="delete" asp-route-advantageId="@advantage.Id" class="btn btn-danger btn-sm" data-id="@advantage.Id"><span class="fas fa-minus-circle"></span></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @*Advantages of Ilisu Hilltop Heaven*@
+    <div class="card-body">
+        <div class="table-responsive">
+            <h3>Ilisu Hilltop Heaven</h3>
+            <table class="table table-bordered" id="advantageHilltopTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Url</th>
+                        <th>Dil</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Url</th>
+                        <th>Dil</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var advantageHiltop in Model.AdvantageHilltops)
+                    {
+                        <tr name="@advantageHiltop.Id">
+                            <td>@advantageHiltop.Id</td>
+                            <td>@advantageHiltop.Title</td>
+                            <td>@advantageHiltop.Language.LanguageCode</td>
+                            <td>
+                                <a asp-area="admin" asp-controller="advantage" asp-action="updatehilltopadvantage" asp-route-advantageId="@advantageHiltop.Id" class="btn btn-primary btn-sm btn-update" data-id="@advantageHiltop.Id"><span class="fas fa-edit"></span></a>
+                                <a asp-area="admin" asp-controller="advantage" asp-action="deletehilltopadvantage" asp-route-advantageId="@advantageHiltop.Id" class="btn btn-danger btn-sm" data-id="@advantageHiltop.Id"><span class="fas fa-minus-circle"></span></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            const dataTable = $('#advantageTable').DataTable({
+                dom:
+                    "<'row'<'col-sm-3'l><'col-sm-6 text-center'B><'col-sm-3'f>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+                buttons: [
+                    {
+                        text: 'Əlavə et',
+                        attr: {
+                            id: "btnAdd",
+                        },
+                        className: 'btn btn-success',
+                        action: function (e, dt, node, config) {
+                        }
+                    }]
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#btnAdd').click(function(){
+                window.location.href = '@Url.Action("add", "advantage")';
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            const dataTable = $('#advantageHilltopTable').DataTable({
+                dom:
+                    "<'row'<'col-sm-3'l><'col-sm-6 text-center'B><'col-sm-3'f>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+                buttons: [
+                    {
+                        text: 'Əlavə et',
+                        attr: {
+                            id: "btnAddHilltop",
+                        },
+                        className: 'btn btn-success',
+                        action: function (e, dt, node, config) {
+                        }
+                    }]
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#btnAddHilltop').click(function(){
+                window.location.href = '@Url.Action("addhilltopadvantage", "advantage")';
+            });
+        });
+    </script>
+}
+@section Styles{
+
+}

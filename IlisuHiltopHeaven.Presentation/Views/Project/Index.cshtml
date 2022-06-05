@@ -1,0 +1,225 @@
+﻿@model IlisuHiltopHeaven.Presentation.Models.ProjectViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer localizer
+@{
+    Layout = "_LayoutFront";
+    ViewBag.Title = localizer["PageTitle"];
+    ViewBag.PageName = Model.HomePages.PageName;
+    ViewBag.Offices = Model.Offices;
+    ViewBag.SocialMedia = Model.SocialMedia;
+}
+
+<!-- HERO -->
+<div class="hero-2 w-100" style="background: linear-gradient(89.5deg, #b4a990 1.7%, rgba(0, 0, 0, 0) 95.85%),  url(/img/@Model.HomePages.Image);
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
+    ">
+    <div class="container position-relative">
+        <h1 class="title-primary text-white mt-5" data-aos="fade-up" data-aos-duration="500">
+            @Model.HomePages.Title
+        </h1>
+    </div>
+</div>
+<!-- HERO -->
+
+@{
+    await Html.RenderPartialAsync("_Sidebar", Model.SocialMedia, new ViewDataDictionary(ViewData) { { "pageUrl", ViewBag.PageName } });
+}
+
+@foreach (var project in Model.Projects)
+{
+    <main id="main">
+        <!-- BÖLÜM 1  -->
+        <section class="container-xl py-5">
+            <div class="row pt-5">
+                <div class="col-lg-6">
+                    <p class="paragraph" data-aos="fade-up" data-aos-duration="500">
+                        @project.MainPlan
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- BÖLÜM 1 -->
+        <!-- BÖLÜM 2 -->
+        <section class="container-xl pb-5">
+            <div class="row">
+                <div class="col-md-6 col-sm-12" data-aos="fade-up" data-aos-duration="500">
+                    <div class="card border-0 bg-transparent">
+                        <div class="card-body border-0">
+                            <a href="~/img/@project.ImageOne" data-lightbox="image-1">
+                                <img src="~/img/@project.ImageOne" alt="" class="card-img-top" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12" data-aos="fade-up" data-aos-duration="500">
+                    <div class="card border-0 bg-transparent">
+                        <div class="card-body border-0">
+                            <a href="~/img/@project.ImageTwo" data-lightbox="image-1">
+                                <img src="~/img/@project.ImageTwo" alt="" class="card-img-top" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12" data-aos="fade-up" data-aos-duration="500">
+                    <div class="card border-0 bg-transparent">
+                        <div class="card-body border-0">
+                            <a href="~/img/@project.ImageThree" data-lightbox="image-1">
+                                <img src="~/img/@project.ImageThree" alt="" class="card-img-top" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12" data-aos="fade-up" data-aos-duration="500">
+                    <div class="card border-0 bg-transparent">
+                        <div class="card-body border-0">
+                            <a href="~/img/@project.ImageFour" data-lightbox="image-1">
+                                <img src="~/img/@project.ImageFour" alt="" class="card-img-top" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12" data-aos="fade-up" data-aos-duration="500">
+                    <div class="card border-0 bg-transparent">
+                        <div class="card-body border-0">
+                            <a href="~/img/@project.ImageFive" data-lightbox="image-1">
+                                <img src="~/img/@project.ImageFive" alt="" class="card-img-top" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12" data-aos="fade-up" data-aos-duration="500">
+                    <div class="card border-0 bg-transparent">
+                        <div class="card-body border-0">
+                            <a href="~/img/@project.ImageSix" data-lightbox="image-1">
+                                <img src="~/img/@project.ImageSix" alt="" class="card-img-top" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- BÖLÜM 2 -->
+        <!-- BÖLÜM 3 -->
+        <section class="w-100 py-5" style="background: #cae1d9">
+            <div class="container-xl">
+                <div class="row py-5">
+                    <div class="col-sm-12 col-md-6">
+                        <h1 class="title-primary" data-aos="fade-up" data-aos-duration="500">
+                            @project.Title1
+                        </h1>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <p class="paragraph" data-aos="fade-up" data-aos-duration="500">
+                            @project.ComlexLoc
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 location">
+                        @Html.Raw(@project.MapUrl)
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- BÖLÜM 3 Bitiş -->
+        <!-- BÖLÜM 4 -->
+        <section class="w-100 py-5" style="background: #f5efe0">
+            <div class="container-xl">
+                <div class="row py-5">
+                    <div class="col-sm-12 col-md-6" data-aos="fade-up" data-aos-duration="500">
+                        <h1 class="title-primary">
+                            @project.Title2
+                        </h1>
+                    </div>
+                    <div class="col-sm-12 col-md-6 li-chircle" data-aos="fade-up" data-aos-duration="500">
+                        <p class="paragraph">
+                            @Html.Raw(@project.BuildingProject)
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="card border-0 bg-transparent" data-aos="fade-up" data-aos-duration="500">
+                        <div class="card-body border-0 bg-transparent">
+                            <div class="swiper-container mySwiper3 project-slide">
+                                <div class="swiper-wrapper" >
+                                    <div class="swiper-slide">
+                                        <a  href="~/img/@project.MainImageOne" data-lightbox="image-2">
+                                            <img class="w-100 h-100"
+                                                
+                                                 src="~/img/@project.MainImageOne"
+                                                 alt=""
+                                                 />
+                                        </a>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="~/img/@project.MainImageTwo" data-lightbox="image-2">
+                                            <img class="w-100 h-100"
+                                                 src="~/img/@project.MainImageTwo"
+                                                 alt="" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                            </div>
+                            <div class="w-100 bg-dark-brown px-5 py-3 text-white f-size-24">@localizer["floor1"]</div>
+                        </div>
+                    </div>
+                    <div class="card border-0 bg-transparent" data-aos="fade-up" data-aos-duration="500">
+                        <div class="card-body border-0 bg-transparent">
+                            <div class="swiper-container mySwiper4 project-slide">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <a href="~/img/@project.MainImageThree" data-lightbox="image-1">
+                                            <img class="w-100 h-100"
+                                                 src="~/img/@project.MainImageThree"
+                                                 alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="~/img/@project.MainImageFour" data-lightbox="image-1">
+                                            <img class="w-100 h-100"
+                                                 src="~/img/@project.MainImageFour"
+                                                 alt="" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                            </div>
+                            <div class="w-100 bg-dark-brown px-5 py-3 text-white f-size-24">@localizer["floor2"]</div>
+                        </div>
+                    </div>
+                    <div class="card border-0 bg-transparent" data-aos="fade-up" data-aos-duration="500">
+                        <div class="card-body border-0 bg-transparent">
+                            <div class="swiper-container mySwiper5 project-slide">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <a href="~/img/@project.MainImageFive" data-lightbox="image-3">
+                                            <img class="w-100 h-100"
+                                                 src="~/img/@project.MainImageFive"
+                                                 alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <a href="~/img/@project.MainImageSix" data-lightbox="image-3">
+                                            <img class="w-100 h-100"
+                                                 src="~/img/@project.MainImageSix"
+                                                 alt="" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                            </div>
+                            <div class="w-100 bg-dark-brown px-5 py-3 text-white f-size-24">@localizer["floor3"]</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- BÖLÜM 4  -->
+    </main>
+}

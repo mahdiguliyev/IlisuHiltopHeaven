@@ -1,0 +1,134 @@
+﻿@model IList<IlisuHiltopHeaven.Entities.Concrete.Service>
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Xidmətlər";
+}
+<ol class="breadcrumb mb-3 mt-2">
+    <li class="breadcrumb-item"><a asp-area="admin" asp-controller="home" asp-action="index">Admin</a></li>
+    <li class="breadcrumb-item active"><a asp-area="admin" asp-controller="service" asp-action="index">Xidmətlər</a></li>
+</ol>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+        Xidmətlər
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="servicesTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Başlıq</th>
+                        <th>Dil</th>
+                        <th>Şəkil</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Başlıq</th>
+                        <th>Dil</th>
+                        <th>Şəkil</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var service in Model)
+                    {
+                        <tr name="@service.Id">
+                            <td>@service.Id</td>
+                            <td>@service.Title</td>
+                            <td>@service.Language.LanguageCode</td>
+                            <td><svg class="services__card--icon" style="height:50px;width:50px;"><use xlink:href="/Front/images/@service.Image"></use></svg></td>
+                            <td>
+                                <a asp-area="admin" asp-controller="service" asp-action="update" asp-route-serviceId="@service.Id" class="btn btn-primary btn-sm btn-update" data-id="@service.Id"><span class="fas fa-edit"></span></a>
+                                @if (service.IsActive == true)
+                                {
+                                    <a asp-area="admin" asp-controller="service" asp-action="activateanddeactivate" asp-route-serviceId="@service.Id" class="btn btn-danger btn-sm" data-id="@service.Id"><span class="fas fa-minus-circle"></span></a>
+
+                                }
+                                else
+                                {
+                                    <a asp-area="admin" asp-controller="service" asp-action="activateanddeactivate" asp-route-serviceId="@service.Id" class="btn btn-primary btn-sm" data-id="@service.Id"><span class="fas fa-undo-alt"></span></a>
+                                }
+                                <a asp-area="admin" asp-controller="service" asp-action="deleteadvantages" asp-route-serviceId="@service.Id" class="btn btn-warning btn-sm btn-update" data-id="@service.Id"><span class="fas fa-trash-alt"></span></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            const dataTable = $('#servicesTable').DataTable({});
+        });
+    </script>
+    @*<script>
+        $(document).ready(function () {
+            $('#btnAdd').click(function(){
+                window.location.href = '@Url.Action("add","service")';
+            });
+        });
+    </script>*@
+    <script>
+        $(document).ready(function () {
+            $(document).on('click', '.btn-delete', function (event) {
+                event.preventDefault();
+                const id = $(this).attr('data-id');
+                const tableRow = $(`[name="${id}"]`);
+                const serviceTitle = tableRow.find('td:eq(1)').text();
+                Swal.fire({
+                    title: 'Xidməti silmək üçün əminsiniz?',
+                    text: `'${serviceTitle}' başlıqlı xidmət silinəcək!`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'Xeyr',
+                    confirmButtonText: 'Bəli, Sil!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            type: 'POST',
+                            dataType: 'json',
+                            data: { serviceId: id },
+                            url: '/admin/service/delete/',
+                            success: function (data) {
+                                const serviceResult = jQuery.parseJSON(data);
+
+                                if (serviceResult.ResultStatus === 0) {
+                                    Swal.fire(
+                                        'Silindi!',
+                                        `${serviceResult.Message}`,
+                                        'success'
+                                    );
+
+                                    //dataTable.row(tableRow).remove().draw();
+                                } else {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Uğursuz Əməliyyat!',
+                                        text: `${serviceResult.Message}`
+                                    });
+                                }
+                            },
+                            error: function (err) {
+                                console.log(err);
+                                toastr.error(`${err.responseText}`, "Error!");
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+    
+}
+@section Styles{
+
+}

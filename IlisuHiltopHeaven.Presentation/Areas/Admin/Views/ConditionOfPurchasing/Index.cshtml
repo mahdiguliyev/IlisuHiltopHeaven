@@ -1,0 +1,70 @@
+﻿@model IlisuHiltopHeaven.Presentation.Areas.Admin.Models.ConditionOfPurchasingViewModel
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Əldə Etmənin Şərtləri";
+}
+<ol class="breadcrumb mb-3 mt-2">
+    <li class="breadcrumb-item"><a asp-area="admin" asp-controller="home" asp-action="index">Admin</a></li>
+    <li class="breadcrumb-item active"><a asp-area="admin" asp-controller="conditionofpurchasing" asp-action="index">Əldə Etmənin Şərtləri</a></li>
+</ol>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+        Əldə Etmənin Şərtləri
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="conditionOfPurchasingTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Əsas Başlıq</th>
+                        <th>Başlıq 1</th>
+                        <th>Başlıq 2</th>
+                        <th>Başlıq 3</th>
+                        <th>Dil</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Əsas Başlıq</th>
+                        <th>Başlıq 1</th>
+                        <th>Başlıq 2</th>
+                        <th>Başlıq 3</th>
+                        <th>Dil</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var conditionOfPurchasing in Model.ConditionsOfPurchasings)
+                    {
+                        <tr name="@conditionOfPurchasing.Id">
+                            <td>@conditionOfPurchasing.Id</td>
+                            <td>@conditionOfPurchasing.MainTitle</td>
+                            <td>@conditionOfPurchasing.Title1</td>
+                            <td>@conditionOfPurchasing.Title2</td>
+                            <td>@conditionOfPurchasing.Title3</td>
+                            <td>@conditionOfPurchasing.Language.LanguageCode</td>
+                            <td>
+                                <a asp-area="admin" asp-controller="conditionofpurchasing" asp-action="update" asp-route-id="@conditionOfPurchasing.LanguageGroupId" class="btn btn-primary btn-sm btn-update" data-id="@conditionOfPurchasing.Id"><span class="fas fa-edit"></span></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            const dataTable = $('#conditionOfPurchasingTable').DataTable({});
+        });
+    </script>
+}
+@section Styles{
+
+}

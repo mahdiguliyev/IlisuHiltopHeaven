@@ -1,0 +1,157 @@
+﻿@model IlisuHiltopHeaven.Presentation.Areas.Admin.Models.AdvantageOfPurchasingUpdateViewModel
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Məlumatları Yenilə";
+}
+
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <div class="card mt-1 mb-1">
+            <div class="card-header">
+                <h4 class="text-center"><span class="fas fa-edit"></span> Məlumatları Yenilə</h4>
+            </div>
+            <div class="card-body">
+                <form asp-area="admin" asp-controller="advantageofpurchasing" asp-action="update" method="post" id="form-generalsettings-update">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="LanguageGroupId" value="@(Model?.LanguageGroupId == null ? "" : Model.LanguageGroupId.ToString())" />
+                    @*<input asp-for="Id" type="hidden" />*@
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <h3>Az dili</h3>
+                            <label asp-for="MainTitle"></label>
+                            <input asp-for="MainTitle" type="text" class="form-control" />
+                            <span asp-validation-for="MainTitle" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <h3>Eng dili</h3>
+                            <label asp-for="MainTitleEn"></label>
+                            <input asp-for="MainTitleEn" type="text" class="form-control" />
+                            <span asp-validation-for="MainTitleEn" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <h3>Rus dili</h3>
+                            <label asp-for="MainTitleRu"></label>
+                            <input asp-for="MainTitleRu" type="text" class="form-control" />
+                            <span asp-validation-for="MainTitleRu" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="Title1"></label>
+                            <input asp-for="Title1" type="text" class="form-control" />
+                            <span asp-validation-for="Title1" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="TitleEn1"></label>
+                            <input asp-for="TitleEn1" type="text" class="form-control" />
+                            <span asp-validation-for="TitleEn1" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="TitleRu1"></label>
+                            <input asp-for="TitleRu1" type="text" class="form-control" />
+                            <span asp-validation-for="TitleRu1" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="Description1"></label>
+                            <textarea asp-for="Description1" class="form-control"></textarea>
+                            <span asp-validation-for="Description1" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="DescriptionEn1"></label>
+                            <textarea asp-for="DescriptionEn1" class="form-control"></textarea>
+                            <span asp-validation-for="DescriptionEn1" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="DescriptionRu1"></label>
+                            <textarea asp-for="DescriptionRu1" class="form-control"></textarea>
+                            <span asp-validation-for="DescriptionRu1" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="Title2"></label>
+                            <input asp-for="Title2" type="text" class="form-control" />
+                            <span asp-validation-for="Title2" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="TitleEn2"></label>
+                            <input asp-for="TitleEn2" type="text" class="form-control" />
+                            <span asp-validation-for="TitleEn2" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="TitleRu2"></label>
+                            <input asp-for="TitleRu2" type="text" class="form-control" />
+                            <span asp-validation-for="TitleRu2" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="Description2"></label>
+                            <textarea asp-for="Description2" class="form-control"></textarea>
+                            <span asp-validation-for="Description2" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="DescriptionEn2"></label>
+                            <textarea asp-for="DescriptionEn2" class="form-control"></textarea>
+                            <span asp-validation-for="DescriptionEn2" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="DescriptionRu2"></label>
+                            <textarea asp-for="DescriptionRu2" class="form-control"></textarea>
+                            <span asp-validation-for="DescriptionRu2" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="Title3"></label>
+                            <input asp-for="Title3" type="text" class="form-control" />
+                            <span asp-validation-for="Title3" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="TitleEn3"></label>
+                            <input asp-for="TitleEn3" type="text" class="form-control" />
+                            <span asp-validation-for="TitleEn3" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="TitleRu3"></label>
+                            <input asp-for="TitleRu3" type="text" class="form-control" />
+                            <span asp-validation-for="TitleRu3" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="Description3"></label>
+                            <textarea asp-for="Description3" class="form-control"></textarea>
+                            <span asp-validation-for="Description3" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="DescriptionEn3"></label>
+                            <textarea asp-for="DescriptionEn3" class="form-control"></textarea>
+                            <span asp-validation-for="DescriptionEn3" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="DescriptionRu3"></label>
+                            <textarea asp-for="DescriptionRu3" class="form-control"></textarea>
+                            <span asp-validation-for="DescriptionRu3" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="Image1"></label>
+                            <input asp-for="Image1" type="hidden" id="thumbnail" class="form-control" />
+                            <svg>
+                                <use xlink:href="/Front/images/@Model.Image1"></use>
+                            </svg>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="Image2"></label>
+                            <input asp-for="Image2" type="hidden" id="thumbnail" class="form-control" />
+                            <svg>
+                                <use xlink:href="/Front/images/@Model.Image2"></use>
+                            </svg>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="Image3"></label>
+                            <input asp-for="Image3" type="hidden" id="thumbnail" class="form-control" />
+                            <svg>
+                                <use xlink:href="/Front/images/@Model.Image3"></use>
+                            </svg>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <button type="submit" class="btn btn-primary"><span class="fas fa-save"></span> Yadda saxla</button>
+                            <a class="btn btn-info" asp-area="admin" asp-controller="home" asp-action="index"><span class="fas fa-arrow-left"></span> Geri</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,102 @@
+﻿@model IList<IlisuHiltopHeaven.Entities.Concrete.Office>
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Ofislər";
+}
+<ol class="breadcrumb mb-3 mt-2">
+    <li class="breadcrumb-item"><a asp-area="admin" asp-controller="home" asp-action="index">Admin</a></li>
+    <li class="breadcrumb-item active"><a asp-area="admin" asp-controller="office" asp-action="index">Ofislər</a></li>
+</ol>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+        Ofislər
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="officeTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Ofis adı</th>
+                        <th>Adres</th>
+                        <th>Tel nömrəsi</th>
+                        <th>E-mail</th>
+                        <th>Əsas ofis</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Ofis adı</th>
+                        <th>Adres</th>
+                        <th>Tel nömrəsi</th>
+                        <th>E-mail</th>
+                        <th>Əsas ofis</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var office in Model)
+                    {
+                        <tr name="@office.Id">
+                            <td>@office.Id</td>
+                            <td>@office.OfficeName</td>
+                            <td>@office.Address</td>
+                            <td>@office.Number1</td>
+                            <td>@office.Email</td>
+                            <th>@(office.IsMain ? "Bəli" : "Xeyr")</th>
+                            <td>
+                                <a asp-area="admin" asp-controller="office" asp-action="update" asp-route-id="@office.LanguageGroupId" class="btn btn-primary btn-sm btn-update" data-id="@office.LanguageGroupId"><span class="fas fa-edit"></span></a>
+                                @*<button class="btn btn-danger btn-sm btn-delete" data-id="@office.Id"><span class="fas fa-minus-circle"></span></button>*@
+                                <a asp-area="admin" asp-controller="office" asp-action="delete" asp-route-officeId="@office.Id" class="btn btn-danger btn-sm" data-id="@office.Id"><span class="fas fa-minus-circle"></span></a>
+                                @*@if (office.IsMain == false)
+                                {
+                                    <a asp-area="admin" asp-controller="office" asp-action="changedtomain" asp-route-id="@office.Id" class="btn btn-success btn-sm btn-update" data-id="@office.Id"><span class="fas fa-edit"></span></a>
+                                }
+                                else
+                                {
+                                    <a asp-area="admin" asp-controller="office" asp-action="changedtomain" asp-route-officeId="@office.Id" class="btn btn-primary btn-sm btn-update" data-id="@office.Id"><span class="fas fa-undo-alt"></span></a>
+                                }*@
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            const dataTable = $('#officeTable').DataTable({
+                dom:
+                    "<'row'<'col-sm-3'l><'col-sm-6 text-center'B><'col-sm-3'f>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+                buttons: [
+                    {
+                        text: 'Əlavə et',
+                        attr: {
+                            id: "btnAdd",
+                        },
+                        className: 'btn btn-success',
+                        action: function (e, dt, node, config) {
+                        }
+                    }]
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#btnAdd').click(function(){
+                window.location.href = '@Url.Action("add","office")';
+            });
+        });
+    </script>
+}
+@section Styles{
+
+}

@@ -1,0 +1,101 @@
+﻿@model IlisuHiltopHeaven.Entities.Concrete.SocialMedia
+@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.Extensions.Options
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer localizer
+
+@inject IOptions<RequestLocalizationOptions> locOptions
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var culture = requestCulture.RequestCulture.Culture;
+    var cultureItems = locOptions.Value.SupportedUICultures
+        .Select(c => new SelectListItem { Value = c.Name, Text = c.DisplayName }).ToList();
+    var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}";
+    var pageName = (string)ViewData["pageUrl"];
+}
+
+<nav class="nav container-xl">
+    <div class="nav__logo">
+        @if (culture.Name.StartsWith("az"))
+        {
+            <a asp-controller="home" asp-action="index"><img src="~/Front/images/Logo_Horizontal_AZE.svg" alt="" /></a>
+        }
+        else if (culture.Name.StartsWith("en"))
+        {
+            <a asp-controller="home" asp-action="index"><img src="~/Front/images/Logo_Horizontal_ENG.svg" alt="" /></a>
+        }
+        else if (culture.Name.StartsWith("ru"))
+        {
+            <a asp-controller="home" asp-action="index"><img src="~/Front/images/Logo_Horizontal_RU.svg" alt="" /></a>
+        }
+    </div>
+    <ul class="nav__menu">
+        <li class="nav__menu--item">
+            <a class="nav__menu--link @(pageName == "homepage" ? "active" : "")" asp-controller="home" asp-action="index">@localizer["HomePage"]</a>
+        </li>
+        <li class="nav__menu--item">
+            <a class="nav__menu--link @(pageName == "project" ? "active" : "")" asp-controller="project" asp-action="index">@localizer["Project"]</a>
+        </li>
+        <li class="nav__menu--item">
+            <a class="nav__menu--link @(pageName == "services" ? "active" : "")" asp-controller="services" asp-action="index">@localizer["Services"]</a>
+        </li>
+        <li class="nav__menu--item">
+            <a class="nav__menu--link @(pageName == "toure" ? "active" : "")" asp-controller="toure" asp-action="index">@localizer["Toures"]</a>
+        </li>
+        <li class="nav__menu--item">
+            <a class="nav__menu--link" style="color: @(pageName == "contact" ? "#b4a990" : "")" asp-controller="contact" asp-action="index">@localizer["Contact"]</a>
+        </li>
+    </ul>
+    <div class="nav__wp">
+        <form action="@Model.WhatsappUrl" method="get">
+            <button class="nav__wp--btn">
+                <svg class="nav__wp--icon">
+                    <use xlink:href="/Front/images/sprite.svg#icon-whatsapp"></use>
+                </svg>
+                <span class="nav__wp--num">@Model.PhoneNumber</span>
+            </button>
+        </form>
+    </div>
+    <div class="nav__lang">
+        @if (culture.Name.StartsWith("az"))
+        {
+            <a asp-controller="language" asp-action="changelanguage" asp-route-culture="@cultureItems.Find(c=>c.Value=="en-US").Value" asp-route-returnUrl="@returnUrl" class="nav__lang--link">
+                <img src="~/Front/images/united.svg" alt="" class="nav__lang--icon" />
+                <span class="nav__lang--text">ENG</span>
+            </a>
+            <a asp-controller="language" asp-action="changelanguage" asp-route-culture="@cultureItems.Find(c=>c.Value=="ru-RU").Value" asp-route-returnUrl="@returnUrl" class="nav__lang--link">
+                <img src="~/Front/images/russia.svg" alt="" class="nav__lang--icon" />
+                <span class="nav__lang--text">RUS</span>
+            </a>
+        }
+        else if (culture.Name.StartsWith("en"))
+        {
+            <a asp-controller="language" asp-action="changelanguage" asp-route-culture="@cultureItems.Find(c=>c.Value=="az-Latn-AZ").Value" asp-route-returnUrl="@returnUrl" class="nav__lang--link">
+                <img src="~/Front/images/azerbaijan.svg" alt="" class="nav__lang--icon" />
+                <span class="nav__lang--text">AZE</span>
+            </a>
+            <a asp-controller="language" asp-action="changelanguage" asp-route-culture="@cultureItems.Find(c=>c.Value=="ru-RU").Value" asp-route-returnUrl="@returnUrl" class="nav__lang--link">
+                <img src="~/Front/images/russia.svg" alt="" class="nav__lang--icon" />
+                <span class="nav__lang--text">RUS</span>
+            </a>
+        }
+        else if (culture.Name.StartsWith("ru"))
+        {
+            <a asp-controller="language" asp-action="changelanguage" asp-route-culture="@cultureItems.Find(c=>c.Value=="az-Latn-AZ").Value" asp-route-returnUrl="@returnUrl" class="nav__lang--link">
+                <img src="~/Front/images/azerbaijan.svg" alt="" class="nav__lang--icon" />
+                <span class="nav__lang--text">AZE</span>
+            </a>
+            <a asp-controller="language" asp-action="changelanguage" asp-route-culture="@cultureItems.Find(c=>c.Value=="en-US").Value" asp-route-returnUrl="@returnUrl" class="nav__lang--link">
+                <img src="~/Front/images/united.svg" alt="" class="nav__lang--icon" />
+                <span class="nav__lang--text">ENG</span>
+            </a>
+        }
+    </div>
+    <div class="nav__hamburger">
+        <svg class="nav__hamburger--icon">
+            <use xlink:href="/Front/images/sprite.svg#icon-hamburger"></use>
+        </svg>
+    </div>
+</nav>

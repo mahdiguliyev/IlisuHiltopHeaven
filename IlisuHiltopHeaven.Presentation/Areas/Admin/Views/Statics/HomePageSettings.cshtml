@@ -1,0 +1,64 @@
+﻿@model IlisuHiltopHeaven.Presentation.Areas.Admin.Models.HomePageViewModel
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Səhifə Şapkaları";
+}
+<ol class="breadcrumb mb-3 mt-2">
+    <li class="breadcrumb-item"><a asp-area="admin" asp-controller="home" asp-action="index">Admin</a></li>
+    <li class="breadcrumb-item active"><a asp-area="admin" asp-controller="statics" asp-action="homepagesettings">Səhifə Şapkaları</a></li>
+</ol>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+        Səhifə Şapkaları
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="homepageTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Başlıq</th>
+                        <th>Səhifə</th>
+                        <th>Şəkil</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Başlıq</th>
+                        <th>Səhifə</th>
+                        <th>Şəkil</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var homePage in Model.HomePages)
+                    {
+                        <tr name="@homePage.Id">
+                            <td>@homePage.Id</td>
+                            <td>@homePage.Title</td>
+                            <td>@homePage.PageName</td>
+                            <td><img src="~/img/@homePage.Image" class="my-image-table" /></td>
+                            <td>
+                                <a asp-area="admin" asp-controller="statics" asp-action="updatehomepagesetting" asp-route-id="@homePage.LanguageGroupId" class="btn btn-primary btn-sm btn-update" data-id="@homePage.LanguageGroupId"><span class="fas fa-edit"></span></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            const dataTable = $('#homepageTable').DataTable({});
+        });
+    </script>
+}
+@section Styles{
+
+}

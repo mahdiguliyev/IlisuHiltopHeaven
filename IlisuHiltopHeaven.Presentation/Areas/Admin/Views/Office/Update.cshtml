@@ -1,0 +1,151 @@
+﻿@model IlisuHiltopHeaven.Presentation.Areas.Admin.Models.OfficeUpdateViewModel
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Ofis Məlumatlarını Yenilə";
+}
+
+
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <div class="card mt-1 mb-1">
+            <div class="card-header">
+                <h4 class="text-center"><span class="fas fa-edit"></span> Ofis Məlumatlarını Yenilə </h4>
+            </div>
+            <div class="card-body">
+                <form asp-area="admin" asp-controller="office" asp-action="update" method="post" id="form-generalsettings-update">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="LanguageGroupId" value="@(Model?.LanguageGroupId == null ? "" : Model.LanguageGroupId.ToString())" />
+                    @*<input asp-for="Id" type="hidden" />*@
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <h3>Az dili</h3>
+                            <label asp-for="OfficeNameAz"></label>
+                            <input asp-for="OfficeNameAz" type="text" id="seoWriter" class="form-control" />
+                            <span asp-validation-for="OfficeNameAz" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <h3>Eng dili</h3>
+                            <label asp-for="OfficeNameEn"></label>
+                            <input asp-for="OfficeNameEn" type="text" id="seoWriter" class="form-control" />
+                            <span asp-validation-for="OfficeNameEn" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <h3>Rus dili</h3>
+                            <label asp-for="OfficeNameRu"></label>
+                            <input asp-for="OfficeNameRu" type="text" id="seoWriter" class="form-control" />
+                            <span asp-validation-for="OfficeNameRu" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="AddressAz"></label>
+                            <textarea asp-for="AddressAz" class="form-control"></textarea>
+                            <span asp-validation-for="AddressAz" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="AddressEn"></label>
+                            <textarea asp-for="AddressEn" class="form-control"></textarea>
+                            <span asp-validation-for="AddressEn" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="AddressRu"></label>
+                            <textarea asp-for="AddressRu" class="form-control"></textarea>
+                            <span asp-validation-for="AddressRu" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="NumberAz1"></label>
+                            <input asp-for="NumberAz1" type="tel" class="form-control" />
+                            <span asp-validation-for="NumberAz1" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="NumberEn1"></label>
+                            <input asp-for="NumberEn1" type="tel" class="form-control" />
+                            <span asp-validation-for="NumberEn1" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="NumberRu1"></label>
+                            <input asp-for="NumberRu1" type="tel" class="form-control" />
+                            <span asp-validation-for="NumberRu1" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="NumberAz2"></label>
+                            <input asp-for="NumberAz2" type="tel" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="NumberEn2"></label>
+                            <input asp-for="NumberEn2" type="tel" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="NumberRu2"></label>
+                            <input asp-for="NumberRu2" type="tel" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="NumberAz3"></label>
+                            <input asp-for="NumberAz3" type="tel" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="NumberEn3"></label>
+                            <input asp-for="NumberEn3" type="tel" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="NumberRu3"></label>
+                            <input asp-for="NumberRu3" type="tel" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="EmailAz"></label>
+                            <input asp-for="EmailAz" type="email" class=" form-control" />
+                            <span asp-validation-for="EmailAz" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="EmailEn"></label>
+                            <input asp-for="EmailEn" type="email" class=" form-control" />
+                            <span asp-validation-for="EmailEn" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="EmailRu"></label>
+                            <input asp-for="EmailRu" type="email" class=" form-control" />
+                            <span asp-validation-for="EmailRu" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="WorkDaysAz"></label>
+                            <input asp-for="WorkDaysAz" class=" form-control" />
+                            <span asp-validation-for="WorkDaysAz" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="WorkDaysEn"></label>
+                            <input asp-for="WorkDaysEn" class=" form-control" />
+                            <span asp-validation-for="WorkDaysEn" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="WorkDaysRu"></label>
+                            <input asp-for="WorkDaysRu" class=" form-control" />
+                            <span asp-validation-for="WorkDaysRu" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="WorkHoursAz"></label>
+                            <input asp-for="WorkHoursAz" class=" form-control" />
+                            <span asp-validation-for="WorkHoursAz" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="WorkHoursEn"></label>
+                            <input asp-for="WorkHoursEn" class=" form-control" />
+                            <span asp-validation-for="WorkHoursEn" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="WorkHoursRu"></label>
+                            <input asp-for="WorkHoursRu" class=" form-control" />
+                            <span asp-validation-for="WorkHoursRu" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label asp-for="MapUrl"></label>
+                            <input class="form-control" asp-for="MapUrl" />
+                            <span class="text-danger" asp-validation-for="MapUrl"></span>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <button type="submit" class="btn btn-primary"><span class="fas fa-save"></span> Yadda saxla</button>
+                            <a class="btn btn-info" asp-area="admin" asp-controller="office" asp-action="index"><span class="fas fa-arrow-left"></span> Geri</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

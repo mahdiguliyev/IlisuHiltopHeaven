@@ -1,0 +1,139 @@
+﻿@model IlisuHiltopHeaven.Presentation.Areas.Admin.Models.UserWithRolesViewModel
+<div id="layoutSidenav_nav">
+    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+            <div class="nav">
+                <div class="sb-sidenav-menu-heading">Menu</div>
+                <a class="nav-link" asp-area="" asp-controller="home" asp-action="index" target="_blank">
+                    <div class="sb-nav-link-icon"><i class="fas fa-blog"></i></div>
+                    Saytı Göstər
+                </a>
+
+                <div class="sb-sidenav-menu-heading">Kontent</div>
+
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Ümumi
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseLayouts" aria-labelledby="heading" data-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" asp-area="admin" asp-controller="statics" asp-action="homepagesettings">
+                            <div class="sb-nav-link-icon"><i class="fas fa-heading"></i></div>
+                            Səhifə Şapkaları
+                        </a>
+                    </nav>
+                </div>
+
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayoutsOne" aria-expanded="false" aria-controls="collapseLayoutsOne">
+                    <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
+                    Ana Səhifə
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseLayoutsOne" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" asp-area="admin" asp-controller="statics" asp-action="updatetitleandsubtitle">
+                            <div class="sb-nav-link-icon"><i class="fas fa-heading"></i></div>
+                            İkinci Bölmə, Xidmətlər, Ekoturizm
+                        </a>
+                        <a class="nav-link" asp-area="admin" asp-controller="homepageinf" asp-action="index">
+                            <div class="sb-nav-link-icon"><i class="fas fa-align-justify"></i></div>
+                            Hilltop Heaven nədir?
+                        </a>
+                        <a class="nav-link" asp-area="admin" asp-controller="statics" asp-action="updatebannersetting">
+                            <div class="sb-nav-link-icon"><i class="far fa-images"></i></div>
+                            Fotolar və Video
+                        </a>
+                        <a class="nav-link" asp-area="admin" asp-controller="statics" asp-action="updatesellconditionsetting">
+                            <div class="sb-nav-link-icon"><i class="fas fa-newspaper"></i></div>
+                            Satış Şərtləri
+                        </a>
+                        <a class="nav-link" asp-area="admin" asp-controller="advantageofpurchasing" asp-action="update">
+                            <div class="sb-nav-link-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                            Nə əldə edirsiniz?
+                        </a>
+                        <a class="nav-link" asp-area="admin" asp-controller="conditionofpurchasing" asp-action="update">
+                            <div class="sb-nav-link-icon"><i class="far fa-handshake"></i></div>
+                            Necə əldə edə bilərik?
+                        </a>
+                        <a class="nav-link" asp-area="admin" asp-controller="housingproject" asp-action="update">
+                            <div class="sb-nav-link-icon"><i class="fas fa-drafting-compass"></i></div>
+                            Mənzillərin Layihəsi
+                        </a>
+                    </nav>
+                </div>
+
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayoutsTwo" aria-expanded="false" aria-controls="collapseLayoutsTwo">
+                    <div class="sb-nav-link-icon"><i class="fas fa-project-diagram"></i></div>
+                    Layihə
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseLayoutsTwo" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" asp-area="admin" asp-controller="statics" asp-action="updateprojectsetting">
+                            <div class="sb-nav-link-icon"><i class="fas fa-align-justify"></i></div>
+                            Layihə Məlumatları
+                        </a>
+                    </nav>
+                </div>
+
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayoutsThree" aria-expanded="false" aria-controls="collapseLayoutsThree">
+                    <div class="sb-nav-link-icon"><i class="fas fa-th-list"></i></div>
+                    Xidmətlər
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseLayoutsThree" aria-labelledby="headingThree" data-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" asp-area="admin" asp-controller="service" asp-action="index">
+                            <div class="sb-nav-link-icon"><i class="fa fa-text-width"></i></div>
+                            Xidmət Məlumatları
+                        </a>
+                        <a class="nav-link" asp-area="admin" asp-controller="advantage" asp-action="index">
+                            <div class="sb-nav-link-icon"><i class="fas fa-balance-scale-right"></i></div>
+                            Avantajlar
+                        </a>
+                    </nav>
+                </div>
+
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayoutsFour" aria-expanded="false" aria-controls="collapseLayoutsFour">
+                    <div class="sb-nav-link-icon"><i class="fas fa-bus-alt"></i></div>
+                    Turlar
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseLayoutsFour" aria-labelledby="headingFour" data-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" asp-area="admin" asp-controller="statics" asp-action="updatetravelsetting">
+                            <div class="sb-nav-link-icon"><i class="fa fa-text-width"></i></div>
+                            Tur Məlumatları
+                        </a>
+                    </nav>
+                </div>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayoutsFive" aria-expanded="false" aria-controls="collapseLayoutsFive">
+                    <div class="sb-nav-link-icon"><i class="fas fa-compress-arrows-alt"></i></div>
+                    Əlaqə
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseLayoutsFive" aria-labelledby="headingFive" data-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" asp-area="admin" asp-controller="office" asp-action="index">
+                            <div class="sb-nav-link-icon"><i class="far fa-building"></i></div>
+                            Ofislər
+                        </a>
+                        <a class="nav-link" asp-area="admin" asp-controller="statics" asp-action="updatesocialmedia">
+                            <div class="sb-nav-link-icon"><i class="fas fa-share-alt"></i></div>
+                            Sosyal Medyalar
+                        </a>
+                    </nav>
+                </div>
+                <a class="nav-link" asp-area="admin" asp-controller="contact" asp-action="index">
+                    <div class="sb-nav-link-icon"><i class="fas fa-phone-volume"></i></div>
+                    Əlaqə Məlumatları
+                </a>
+            </div>
+        </div>
+        <div class="sb-sidenav-footer">
+            <div class="small">Logged in user:</div>
+            @Model.User.UserName
+        </div>
+    </nav>
+</div>

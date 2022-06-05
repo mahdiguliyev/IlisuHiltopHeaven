@@ -1,0 +1,69 @@
+﻿@model IList<IlisuHiltopHeaven.Entities.Concrete.Contact>
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Müraciətlər";
+}
+<ol class="breadcrumb mb-3 mt-2">
+    <li class="breadcrumb-item"><a asp-area="admin" asp-controller="home" asp-action="index">Admin</a></li>
+    <li class="breadcrumb-item active"><a asp-area="admin" asp-controller="contact" asp-action="index">Müraciətlər</a></li>
+</ol>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+        Müraciətlər
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="contactsTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Tel nömrəsi</th>
+                        <th>Daxil olma tarixi</th>
+                        <th>Status</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Tel nömrəsi</th>
+                        <th>Daxil olma tarixi</th>
+                        <th>Status</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var contact in Model)
+                    {
+                        <tr name="@contact.Id">
+                            <td>@contact.Id</td>
+                            <td>@contact.PhoneNumber</td>
+                            <td>@contact.CreatedDate.ToShortDateString()</td>
+                            <td>@(contact.IsAnswerd ? "Cavablandırılıb" : "Cavablandırılmıyıb")</td>
+                            
+                            <td>
+                                @if (contact.IsAnswerd == false)
+                                {
+                                    <a asp-area="admin" asp-controller="contact" asp-action="answer" asp-route-contactId="@contact.Id" class="btn btn-success btn-sm btn-update" data-id="@contact.Id"><span class="fas fa-edit"></span></a>
+                                }
+                                <a asp-area="admin" asp-controller="contact" asp-action="detail" asp-route-contactId="@contact.Id" class="btn btn-primary btn-sm btn-update" data-id="@contact.Id"><span class="fas fa-info"></span></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            const dataTable = $('#contactsTable').DataTable({});
+        });
+    </script>
+}
+@section Styles{
+
+}

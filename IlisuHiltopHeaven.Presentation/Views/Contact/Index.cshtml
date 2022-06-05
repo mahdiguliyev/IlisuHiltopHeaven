@@ -1,0 +1,86 @@
+﻿@model IlisuHiltopHeaven.Presentation.Models.ContactViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer localizer
+
+@{
+    Layout = "_LayoutFront";
+    ViewBag.Title = localizer["PageTitle"];
+    ViewBag.PageName = Model.HomePages.PageName;
+    ViewBag.Offices = Model.Offices;
+    ViewBag.SocialMedia = Model.SocialMedia;
+    var count = 0;
+}
+
+<!-- SIDEBAR -->
+@{
+    await Html.RenderPartialAsync("_Sidebar", Model.SocialMedia, new ViewDataDictionary(ViewData) { { "pageUrl", ViewBag.PageName } });
+}
+<!-- SIDEBAR -->
+
+<main id="main">
+    <section class="contact w-100 py-5">
+        <div class="container-xl">
+            <div class="contact__top mb-5">
+                <h1 class="contact__title title-primary text-center" data-aos="fade-up" data-aos-duration="500">@Model.HomePages.Title</h1>
+                <p class="contact__desc paragraph text-center mx-auto mt-4" style="max-width: 600px;" data-aos="fade-up" data-aos-duration="500">
+                    @Model.HomePages.Description
+                </p>
+            </div>
+            <div class="row contact__cards">
+                <div class=" col-md-6 col-lg-3" data-aos="fade-up" data-aos-duration="500">
+                    <div class="contact__card">
+                        <div class="contact__card--icon">
+                            <img src="/Front/images/callcenter.svg" alt="">
+                        </div>
+                        <h2 class="contact__card--title my-4 text-center">TELEFON</h2>
+                        <div class="contact__card--numbers">
+                            <span>@Model.MainOffice.Number1</span> <br />
+                            <span>@Model.MainOffice.Number2</span> <br />
+                            <span>@Model.MainOffice.Number3</span>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-md-6 col-lg-3" data-aos="fade-up" data-aos-duration="500">
+                    <div class="contact__card">
+                        <div class="contact__card--icon">
+                            <img src="/Front/images/location.svg" alt="">
+                        </div>
+                        <h2 class="contact__card--title my-4 text-center">ÜNVAN</h2>
+                        <div class="contact__card--desc">
+                            <span>@Model.MainOffice.Address</span>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-md-6 col-lg-3" data-aos="fade-up" data-aos-duration="500">
+                    <div class="contact__card">
+                        <div class="contact__card--icon">
+                            <img src="/Front/images/envelope-alt.svg" alt="">
+                        </div>
+                        <h2 class="contact__card--title my-4 text-center">ELEKTRON POÇT</h2>
+                        <div class="contact__card--desc">
+                            <span>@Model.MainOffice.Email</span>
+                        </div>
+                    </div>
+                </div>
+                <div class=" col-md-6 col-lg-3" data-aos="fade-up" data-aos-duration="500">
+                    <div class="contact__card">
+                        <div class="contact__card--icon">
+                            <img src="/Front/images/time.svg" alt="">
+                        </div>
+                        <h2 class="contact__card--title my-4 text-center">ELEKTRON POÇT</h2>
+                        <div class="contact__card--desc">
+                            <span>@Model.MainOffice.WorkDays</span>
+                            <span>@Model.MainOffice.WorkHours</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="contact__map" >
+                    @Html.Raw(@Model.MainOffice.MapUrl)
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

@@ -1,0 +1,56 @@
+﻿@model IlisuHiltopHeaven.Entities.Concrete.Office
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Ofisi Sil";
+}
+
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <div class="card mt-1 mb-1">
+            <div class="card-header">
+                <h4 class="text-center"><span class="fas fa-edit"></span> Mövcud Ofisi Sil </h4>
+            </div>
+            <div class="card-body">
+                <form asp-area="admin" asp-controller="office" asp-action="delete" method="post" id="form-generalsettings-update">
+                    @Html.AntiForgeryToken()
+                    <input asp-for="Id" type="hidden" />
+                    <input type="hidden" name="LanguageGroupId" value="@(Model?.LanguageGroupId == null ? "" : Model.LanguageGroupId.ToString())" />
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label asp-for="OfficeName"></label>
+                            <input asp-for="OfficeName" type="text" class="form-control" disabled />
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label asp-for="Address"></label>
+                            <textarea asp-for="Address" class="form-control" disabled></textarea>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label asp-for="Number1"></label>
+                            <input asp-for="Number1" type="tel" class="form-control" disabled />
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label asp-for="LanguageId" for="categoryList"></label>
+                            <input asp-for="Language.LanguageCode" type="text" class="form-control" disabled />
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label asp-for="Email"></label>
+                            <input asp-for="Email" type="email" class="form-control" disabled />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="WorkDays"></label>
+                            <input asp-for="WorkDays" class=" form-control-file" disabled />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="WorkHours"></label>
+                            <input asp-for="WorkHours" class=" form-control-file" disabled />
+                        </div>
+                        <div class="form-group col-md-12">
+                            <button type="submit" class="btn btn-danger"><span class="fas fa-save"></span> Sil</button>
+                            <a class="btn btn-primary" asp-area="admin" asp-controller="office" asp-action="index"><span class="fas fa-arrow-left"></span> Geri</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+﻿@model IlisuHiltopHeaven.Presentation.Areas.Admin.Models.HomePageInfUpdateViewModel
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Kontenti Yenilə";
+}
+
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <div class="card mt-1 mb-1">
+            <div class="card-header">
+                <h4 class="text-center"><span class="fas fa-edit"></span> Ana Səhifə Kontentini Yenilə </h4>
+            </div>
+            <div class="card-body">
+                <form asp-area="admin" asp-controller="homepageinf" asp-action="update" method="post" enctype="multipart/form-data" id="form-generalsettings-update">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="LanguageGroupId" value="@(Model?.LanguageGroupId == null ? "" : Model.LanguageGroupId.ToString())" />
+                    @*<input asp-for="Id" type="hidden" />*@
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <h3>Az dili</h3>
+                            <label asp-for="TitleAz"></label>
+                            <input asp-for="TitleAz" type="text" class="form-control" />
+                            <span asp-validation-for="TitleAz" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <h3>Eng dili</h3>
+                            <label asp-for="TitleEn"></label>
+                            <input asp-for="TitleEn" type="text" class="form-control" />
+                            <span asp-validation-for="TitleEn" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <h3>Rus dili</h3>
+                            <label asp-for="TitleRu"></label>
+                            <input asp-for="TitleRu" type="text" class="form-control" />
+                            <span asp-validation-for="TitleRu" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="DescriptionAz"></label>
+                            <textarea asp-for="DescriptionAz" class="form-control"></textarea>
+                            <span asp-validation-for="DescriptionAz" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="DescriptionEn"></label>
+                            <textarea asp-for="DescriptionEn" class="form-control"></textarea>
+                            <span asp-validation-for="DescriptionEn" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="DescriptionRu"></label>
+                            <textarea asp-for="DescriptionRu" class="form-control"></textarea>
+                            <span asp-validation-for="DescriptionRu" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label asp-for="Image"></label>
+                            <input asp-for="Image" type="hidden" id="thumbnail" class="form-control" />
+                            <img src="~/img/@Model.Image" style="height:240px;width:400px;"/>
+                            <span class="text-danger" asp-validation-for="Image"></span>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label asp-for="ImageFile"></label>
+                            <input asp-for="ImageFile" type="file" id="image" accept="image/*" class="form-control-file" />
+                            <span asp-validation-for="ImageFile" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <button type="submit" class="btn btn-primary"><span class="fas fa-save"></span> Yadda saxla</button>
+                            <a class="btn btn-info" asp-area="admin" asp-controller="homepageinf" asp-action="index"><span class="fas fa-arrow-left"></span> Geri</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

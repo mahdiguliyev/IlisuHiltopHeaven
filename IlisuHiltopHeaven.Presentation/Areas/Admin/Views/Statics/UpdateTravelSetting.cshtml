@@ -1,0 +1,127 @@
+﻿@model IlisuHiltopHeaven.Presentation.Areas.Admin.Models.TravelUpdateViewModel
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Turlar";
+}
+
+<div class="row">
+    <div class="card mt-1 mb-1">
+        <div class="card-header">
+            <h4 class="text-center"><span class="fas fa-edit"></span> Turlar</h4>
+        </div>
+        <div class="card-body">
+            <form asp-controller="statics" asp-action="updatetravelsetting" method="post" enctype="multipart/form-data" id="form-generalsettings-update">
+                @Html.AntiForgeryToken()
+                @*<input type="hidden" asp-for="Id" />*@
+                <input type="hidden" name="LanguageGroupId" value="@(Model?.LanguageGroupId == null ? "" : Model.LanguageGroupId.ToString())" />
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <h3>Az dili</h3>
+                        <label asp-for="TitleAz"></label>
+                        <input class="form-control" asp-for="TitleAz" />
+                        <span class="text-danger" asp-validation-for="TitleAz"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <h3>Eng dili</h3>
+                        <label asp-for="TitleEn"></label>
+                        <input class="form-control" asp-for="TitleEn" />
+                        <span class="text-danger" asp-validation-for="TitleEn"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <h3>Rus dili</h3>
+                        <label asp-for="TitleRu"></label>
+                        <input class="form-control" asp-for="TitleRu" />
+                        <span class="text-danger" asp-validation-for="TitleRu"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="DescriptionAz"></label>
+                        <textarea asp-for="DescriptionAz" class="form-control"></textarea>
+                        <span class="text-danger" asp-validation-for="DescriptionAz"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="DescriptionEn"></label>
+                        <textarea asp-for="DescriptionEn" class="form-control"></textarea>
+                        <span class="text-danger" asp-validation-for="DescriptionEn"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label asp-for="DescriptionRu"></label>
+                        <textarea asp-for="DescriptionRu" class="form-control"></textarea>
+                        <span class="text-danger" asp-validation-for="DescriptionRu"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="ImageOne"></label>
+                        <input asp-for="ImageOne" type="hidden" id="thumbnail" class="form-control" />
+                        <img src="~/img/@Model.ImageOne" style="height:240px;width:580px;" />
+                        <span class="text-danger" asp-validation-for="ImageOne"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="ImageTwo"></label>
+                        <input asp-for="ImageTwo" type="hidden" id="thumbnail" class="form-control" />
+                        <img src="~/img/@Model.ImageTwo" style="height:240px;width:580px;" />
+                        <span class="text-danger" asp-validation-for="ImageTwo"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="ImageFileOne"></label>
+                        <input type="file" class="form-control" asp-for="ImageFileOne" accept="image/*" placeholder="Please, insert website seo author name." />
+                        <span class="text-danger" asp-validation-for="ImageFileOne"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="ImageFileTwo"></label>
+                        <input type="file" class="form-control" asp-for="ImageFileTwo" accept="image/*" placeholder="Please, insert website seo author name." />
+                        <span class="text-danger" asp-validation-for="ImageFileTwo"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="ImageThree"></label>
+                        <input asp-for="ImageThree" type="hidden" id="thumbnail" class="form-control" />
+                        <img src="~/img/@Model.ImageThree" style="height:240px;width:580px;" />
+                        <span class="text-danger" asp-validation-for="ImageThree"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="ImageFour"></label>
+                        <input asp-for="ImageFour" type="hidden" id="thumbnail" class="form-control" />
+                        <img src="~/img/@Model.ImageFour" style="height:240px;width:580px;" />
+                        <span class="text-danger" asp-validation-for="ImageFour"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="ImageFileThree"></label>
+                        <input type="file" class="form-control" asp-for="ImageFileThree" accept="image/*" placeholder="Please, insert website seo author name." />
+                        <span class="text-danger" asp-validation-for="ImageFileThree"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="ImageFileFour"></label>
+                        <input type="file" class="form-control" asp-for="ImageFileFour" accept="image/*" placeholder="Please, insert website seo author name." />
+                        <span class="text-danger" asp-validation-for="ImageFileFour"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="ImageFive"></label>
+                        <input asp-for="ImageFive" type="hidden" id="thumbnail" class="form-control" />
+                        <img src="~/img/@Model.ImageFive" style="height:240px;width:580px;" />
+                        <span class="text-danger" asp-validation-for="ImageFive"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="ImageSix"></label>
+                        <input asp-for="ImageSix" type="hidden" id="thumbnail" class="form-control" />
+                        <img src="~/img/@Model.ImageSix" style="height:240px;width:580px;" />
+                        <span class="text-danger" asp-validation-for="ImageSix"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="ImageFileFive"></label>
+                        <input type="file" class="form-control" asp-for="ImageFileFive" accept="image/*" placeholder="Please, insert website seo author name." />
+                        <span class="text-danger" asp-validation-for="ImageFileFive"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="ImageFileSix"></label>
+                        <input type="file" class="form-control" asp-for="ImageFileSix" accept="image/*" placeholder="Please, insert website seo author name." />
+                        <span class="text-danger" asp-validation-for="ImageFileSix"></span>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <button type="submit" class="btn btn-primary"><span class="fas fa-save"></span> Yadda saxla</button>
+                        <a class="btn btn-info" asp-area="admin" asp-controller="home" asp-action="index"><span class="fas fa-arrow-left"></span> Geri</a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

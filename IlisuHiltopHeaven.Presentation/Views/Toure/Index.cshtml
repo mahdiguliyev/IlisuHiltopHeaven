@@ -1,0 +1,99 @@
+﻿@model IlisuHiltopHeaven.Presentation.Models.ToureViewModel
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer localizer
+@{
+    Layout = "_LayoutFront";
+    ViewBag.Title = localizer["PageTitle"];
+    ViewBag.PageName = "toure";
+    ViewBag.Offices = Model.Offices;
+    ViewBag.SocialMedia = Model.SocialMedia;
+}
+
+<!-- SIDEBAR -->
+@{
+    await Html.RenderPartialAsync("_Sidebar", Model.SocialMedia, new ViewDataDictionary(ViewData) { { "pageUrl", ViewBag.PageName } });
+}
+<!-- SIDEBAR -->
+
+@foreach (var travel in Model.Travels)
+{
+    <main id="main">
+        <!-- BÖLÜM 1 : Qısa məlumat -->
+        <section class="container-xl py-5">
+            <div class="row my-5">
+                <div class="col-md-12 col-lg-6 mb-sm-3">
+                    <h1 class="title-primary" data-aos="fade-up" data-aos-duration="500">
+                        @travel.Title
+                    </h1>
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    <p class="paragraph" data-aos="fade-up" data-aos-duration="500">
+                        @travel.Description
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- BÖLÜM 1 bitiş -->
+        <!-- BÖLÜM 2 -->
+        <section class="container-xl pb-5">
+            <div class="row">
+                <div class="col-md-6 col-sm-12" data-aos="fade-up" data-aos-duration="500">
+                    <div class="card border-0 bg-transparent">
+                        <div class="card-body border-0">
+                            <a href="~/img/@travel.ImageOne" data-lightbox="image-1">
+                                <img src="~/img/@travel.ImageOne" alt="" class="card-img-top" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12" data-aos="fade-up" data-aos-duration="500">
+                    <div class="card border-0 bg-transparent">
+                        <div class="card-body border-0">
+                            <a href="~/img/@travel.ImageTwo" data-lightbox="image-1">
+                                <img src="~/img/@travel.ImageTwo" alt="" class="card-img-top" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12" data-aos="fade-up" data-aos-duration="500">
+                    <div class="card border-0 bg-transparent">
+                        <div class="card-body border-0">
+                            <a href="~/img/@travel.ImageThree" data-lightbox="image-1">
+                                <img src="~/img/@travel.ImageThree" alt="" class="card-img-top" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12" data-aos="fade-up" data-aos-duration="500">
+                    <div class="card border-0 bg-transparent">
+                        <div class="card-body border-0">
+                            <a href="~/img/@travel.ImageFour" data-lightbox="image-1">
+                                <img src="~/img/@travel.ImageFour" alt="" class="card-img-top" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12" data-aos="fade-up" data-aos-duration="500">
+                    <div class="card border-0 bg-transparent">
+                        <div class="card-body border-0">
+                            <a href="~/img/@travel.ImageFive" data-lightbox="image-1">
+                                <img src="~/img/@travel.ImageFive" alt="" class="card-img-top" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12" data-aos="fade-up" data-aos-duration="500">
+                    <div class="card border-0 bg-transparent">
+                        <div class="card-body border-0">
+                            <a href="~/img/@travel.ImageSix" data-lightbox="image-1">
+                                <img src="~/img/@travel.ImageSix" alt="" class="card-img-top" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- BÖLÜM 2 Bitiş -->
+    </main>
+}

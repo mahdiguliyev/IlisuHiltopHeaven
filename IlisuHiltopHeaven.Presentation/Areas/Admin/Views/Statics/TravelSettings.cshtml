@@ -1,0 +1,64 @@
+﻿@model IlisuHiltopHeaven.Presentation.Areas.Admin.Models.TravelViewModel
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Turlar";
+}
+<ol class="breadcrumb mb-3 mt-2">
+    <li class="breadcrumb-item"><a asp-area="admin" asp-controller="home" asp-action="index">Admin</a></li>
+    <li class="breadcrumb-item active"><a asp-area="admin" asp-controller="statics" asp-action="travelsettings">Turlar</a></li>
+</ol>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+        Turlar
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="travelTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Başlıq</th>
+                        <th>Dil</th>
+                        <th>Şəkil</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Başlıq</th>
+                        <th>Dil</th>
+                        <th>Şəkil</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var travel in Model.Travels)
+                    {
+                        <tr name="@travel.Id">
+                            <td>@travel.Id</td>
+                            <td>@travel.Title</td>
+                            <td>@travel.Language.LanguageCode</td>
+                            <td><img src="~/img/@travel.ImageOne" class="my-image-table" /></td>
+                            <td>
+                                <a asp-area="admin" asp-controller="statics" asp-action="updatetravelsetting" asp-route-travelId="@travel.Id" class="btn btn-primary btn-sm btn-update" data-id="@travel.Id"><span class="fas fa-edit"></span></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            const dataTable = $('#travelTable').DataTable({});
+        });
+    </script>
+}
+@section Styles{
+
+}

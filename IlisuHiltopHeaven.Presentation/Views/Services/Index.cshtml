@@ -1,0 +1,213 @@
+﻿@model IlisuHiltopHeaven.Presentation.Models.ServicesViewModel
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer localizer
+@{
+    Layout = "_LayoutFront";
+    ViewBag.Title = localizer["PageTitle"];
+    ViewBag.PageName = Model.HomePages.PageName;
+    ViewBag.Offices = Model.Offices;
+    ViewBag.SocialMedia = Model.SocialMedia;
+}
+@{
+    var show = "";
+    var collapse = "";
+    var collapseName = "page";
+    var heading = "heading";
+    var defineCollapse = 0;
+    var advantageCount = 0;
+    var advantageHiltopCount = 0;
+}
+
+<!-- HERO -->
+<div class="hero-2 w-100" style="background: linear-gradient(89.5deg, #b4a990 1.7%, rgba(0, 0, 0, 0) 95.85%),  url(/img/@Model.HomePages.Image);
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
+    ">
+    <div class="container position-relative">
+        <h1 class="f-size-48 mt-5 raleway f-weight-500 text-white" data-aos="fade-up" data-aos-duration="500">
+            @Model.HomePages.Title
+        </h1>
+        <p class="f-size-18 text-white mt-4" style="max-width: 500px" data-aos="fade-up" data-aos-duration="500">
+            @Model.HomePages.Description
+        </p>
+    </div>
+</div>
+<!-- HERO -->
+<!-- SIDEBAR -->
+@{
+    await Html.RenderPartialAsync("_Sidebar", Model.SocialMedia, new ViewDataDictionary(ViewData) { { "pageUrl", ViewBag.PageName } });
+}
+<!-- SIDEBAR -->
+
+
+
+<main id="main">
+    <section class="w-100 py-5" style="background-color: #f3f6f5">
+        <div class="container-xl py-5">
+            <h1 class="raleway f-size-48 text-center mx-auto mb-5" data-aos="fade-up" data-aos-duration="500"
+                style="max-width: 600px">
+                @Model.TitleAndSubtitle.Title2
+            </h1>
+            <div class="row services-2">
+                <div class="col-sm-12 offset-sm-0 offset-lg-2 col-lg-8">
+                    <div class="accordion" id="accordionPanelsStayOpenExample">
+                        @foreach (var service in Model.Services)
+                        {
+                            advantageCount = 0;
+                            advantageHiltopCount = 0;
+                            collapseName = collapseName + service.Id.ToString();
+                            heading = heading + service.Id.ToString();
+                            defineCollapse += 1;
+                            var existingAdvantages = service.ServiceAdvantages.Select(sa => sa.AdvantageId).ToList();
+                            var existingHiltopAdvantages = service.ServiceHiltopAdvantages.Select(sa => sa.AdvantageHiltopId).ToList();
+                            var serviceAdvList = new Dictionary<int, string>();
+                            var serviceHilltopAdvList = new Dictionary<int, string>();
+                            if (defineCollapse == 1)
+                            {
+                                show = "show";
+                                collapse = "";
+                            }
+                            else
+                            {
+                                show = "";
+                                collapse = "collapsed";
+                            }
+
+                            <div class="accordion-item" style="border-bottom:1px solid rgba(0, 0, 0, 0.25) !important;" data-aos="fade-up" data-aos-duration="500">
+                                <h2 class="accordion-header" id="@heading">
+                                    <button class="accordion-button no-accordion @collapse" type="button" @(defineCollapse == 1 ? "data-bs-toggle=\"collapse\"" : string.Empty) data-bs-target="#@collapseName" @(defineCollapse == 1 ? "aria-expanded=\"false\"" : string.Empty) aria-controls="@collapseName">
+                                        <div class="accordion-title-icon">
+                                            <svg>
+                                                <use xlink:href="/Front/images/@service.Image"></use>
+                                            </svg>
+                                        </div>
+                                        <span class="accordion-title">@service.Title</span>
+                                    </button>
+                                </h2>
+                                <div id="@collapseName" class="accordion-collapse collapse @show" aria-labelledby="@heading" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p class="paragraph">
+                                            @service.Description
+                                        </p>
+                                        @if (service.ServiceHiltopAdvantages.Count > 0 || service.ServiceAdvantages.Count > 0)
+                                        {
+                                            <div class="services-2__title">
+                                                @localizer["DivisionScheme"]
+                                            </div>
+                                            <div class="row mt-4">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="services-2__card">
+
+                                                        <h2 class="services-2__card--title">İlisu Hiltop Heaven</h2>
+                                                        <div class="services-2__card--precent">@service.PercentageIHH%</div>
+                                                        <ul class="services-2__card--list">
+                                                            @foreach (var serviceHilltopAdvantages in service.ServiceHiltopAdvantages)
+                                                            {
+                                                                advantageHiltopCount += 1;
+                                                                @foreach (var advantageHiltop in Model.AdvantageHiltops)
+                                                                {
+                                                                    @if (serviceHilltopAdvantages.AdvantageHiltopId == advantageHiltop.Id)
+                                                                    {
+                                                                        <li>@advantageHiltop.Title</li>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @if (advantageHiltopCount <= 1)
+                                                                        {
+                                                                            serviceHilltopAdvList.Add(advantageHiltop.Id, advantageHiltop.Title);
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                            @{
+                                                                foreach (var existHilltopAdv in existingHiltopAdvantages)
+                                                                {
+                                                                    serviceHilltopAdvList.Remove(existHilltopAdv);
+                                                                }
+                                                                foreach (var svHilltop in serviceHilltopAdvList)
+                                                                {
+                                                                    <li class="line">@svHilltop.Value</li>
+                                                                }
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="services-2__card">
+                                                        @if (CultureInfo.CurrentCulture.Name.StartsWith("az"))
+                                                        {
+                                                            <h2 class="services-2__card--title mt-4 mt-md-0">Ev sahibi</h2>
+                                                        }
+                                                        else if (CultureInfo.CurrentCulture.Name.StartsWith("en"))
+                                                        {
+                                                            <h2 class="services-2__card--title mt-4 mt-md-0">Host</h2>
+                                                        }
+                                                        else
+                                                        {
+                                                            <h2 class="services-2__card--title mt-4 mt-md-0">Хозяин</h2>
+                                                        }
+                                                        <div class="services-2__card--precent">@service.PercentageOwner%</div>
+                                                        <ul class="services-2__card--list">
+                                                            @foreach (var serviceAdvantages in service.ServiceAdvantages)
+                                                            {
+                                                                advantageCount += 1;
+                                                                @foreach (var advantage in Model.Advantages)
+                                                                {
+                                                                    @if (serviceAdvantages.AdvantageId == advantage.Id)
+                                                                    {
+                                                                        <li>@advantage.Title</li>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @if (advantageCount <= 1)
+                                                                        {
+                                                                            serviceAdvList.Add(advantage.Id, advantage.Title);
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                            @{
+                                                                foreach (var existAdv in existingAdvantages)
+                                                                {
+                                                                    serviceAdvList.Remove(existAdv);
+                                                                }
+                                                                foreach (var sv in serviceAdvList)
+                                                                {
+                                                                    <li class="line">@sv.Value</li>
+                                                                }
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <a asp-controller="home" asp-action="download" style="text-decoration:none;color:white;">
+                    <button class="my-btn btn-circle btn-green-1 d-flex justify-content-center align-items-center" data-aos="fade-up" data-aos-duration="500">
+                        <svg style="margin-right:4px;" width="24" height="24" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0)">
+                                <path d="M17.2498 18.9889C16.8298 18.6289 16.4098 18.1789 15.9298 17.6989C15.5998 17.3389 15.2398 16.8289 14.9398 16.2889C15.5098 14.3389 15.7798 12.4789 15.1798 11.5789C14.9098 11.1589 14.4898 10.9489 13.9498 10.9489C13.3498 10.9489 12.8998 11.2189 12.6898 11.7289C12.2098 12.8089 12.9298 14.7889 13.7998 16.4089C13.5598 17.1889 13.2598 18.0289 12.8998 18.9589C12.6898 19.4689 12.4498 19.9789 12.2098 20.4589C9.74977 21.4189 8.24977 22.4989 8.03977 23.5189C7.94977 23.9989 8.09977 24.4189 8.51977 24.7489C8.75977 24.9289 9.02977 25.0489 9.32977 25.0489C9.44977 25.0489 9.56977 25.0189 9.68977 24.9889C10.8298 24.6889 12.0598 23.0089 12.9598 21.2989C13.4998 21.0889 14.1298 20.8789 14.8198 20.6989C15.6298 20.4589 16.3498 20.2789 16.9798 20.1589C18.1498 21.0889 19.1398 21.5989 20.0098 21.5989C20.6698 21.6289 21.1498 21.3889 21.5998 20.9389C22.2598 20.2789 21.9898 19.7089 21.8998 19.5589C21.3598 18.7189 19.7098 18.5389 17.2498 18.9889ZM9.38977 23.9389C9.26977 23.9689 9.20977 23.9389 9.14977 23.9089C9.02977 23.8189 9.02977 23.7589 9.05977 23.6989C9.11977 23.3389 9.80977 22.6789 11.3098 21.9589C10.5898 23.0389 9.86977 23.8189 9.38977 23.9389ZM13.6498 12.1489C13.6798 12.0889 13.7098 11.9989 13.9498 11.9989C14.1598 11.9989 14.2498 12.0889 14.3098 12.1489C14.5798 12.5389 14.5498 13.5289 14.2198 14.8489C13.7098 13.7089 13.4398 12.6289 13.6498 12.1489ZM14.4898 19.6489C14.1898 19.7389 13.8898 19.8289 13.5898 19.9189C13.6798 19.7089 13.7698 19.4989 13.8598 19.3189C14.0698 18.7489 14.3098 18.1789 14.5198 17.5789C14.7598 17.9089 14.9698 18.2089 15.1798 18.4189C15.4498 18.7189 15.7198 18.9889 15.9898 19.2589C15.5098 19.3789 14.9998 19.4989 14.4898 19.6489ZM20.8198 20.1889C20.6098 20.4289 20.3398 20.5189 20.0098 20.5189C19.5598 20.5189 19.0198 20.3089 18.3898 19.8889C20.1298 19.6489 21.1198 19.8289 20.8198 20.1889Z" fill="white" />
+                                <path d="M25.7399 7.98073L19.1699 1.41073C18.7499 0.990732 18.1799 0.750732 17.6099 0.750732H5.81985C5.21985 0.750732 4.67985 0.990732 4.25985 1.41073C3.83985 1.83073 3.59985 2.37073 3.59985 2.97073V27.0307C3.59985 28.2607 4.58985 29.2507 5.81985 29.2507H24.1799C25.4099 29.2507 26.3999 28.2607 26.3999 27.0307V9.54073C26.3999 8.97073 26.1599 8.40073 25.7399 7.98073ZM24.4799 8.52073H19.6199C19.0799 8.52073 18.6299 8.07073 18.6299 7.53073V2.70073L24.4799 8.52073ZM24.1799 27.9607H5.81985C5.30985 27.9607 4.88985 27.5407 4.88985 27.0307V2.97073C4.88985 2.73073 4.97985 2.49073 5.15985 2.31073C5.33985 2.13073 5.57985 2.04073 5.81985 2.04073H17.3399V7.53073C17.3399 8.79073 18.3599 9.81073 19.6199 9.81073H25.1099V27.0307C25.1099 27.5407 24.6899 27.9607 24.1799 27.9607Z" fill="white" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0">
+                                    <rect width="30" height="30" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        @localizer["PdfDownload"]
+                    </button>
+                </a>
+            </div>
+        </div>
+    </section>
+</main>

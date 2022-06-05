@@ -1,0 +1,76 @@
+﻿@model IlisuHiltopHeaven.Presentation.Areas.Admin.Models.HomePageUpdateViewModel
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Ana Səhifə";
+}
+
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <div class="card mt-1 mb-1">
+            <div class="card-header">
+                <h4 class="text-center"><span class="fas fa-edit"></span> Ana Səhifə</h4>
+            </div>
+            <div class="card-body">
+                <form asp-controller="statics" asp-action="updatehomepagesetting" method="post" enctype="multipart/form-data" id="form-generalsettings-update">
+                    @Html.AntiForgeryToken()
+                    @*<input type="hidden" asp-for="Id" />*@
+                    <input type="hidden" name="LanguageGroupId" value="@(Model?.LanguageGroupId == null ? "" : Model.LanguageGroupId.ToString())" />
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <h2>Az dili</h2>
+                            <label asp-for="TitleAz"></label>
+                            <input class="form-control" asp-for="TitleAz" />
+                            <span class="text-danger" asp-validation-for="TitleAz"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <h2>Eng dili</h2>
+                            <label asp-for="TitleEn"></label>
+                            <input class="form-control" asp-for="TitleEn" />
+                            <span class="text-danger" asp-validation-for="TitleEn"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <h2>Rus dili</h2>
+                            <label asp-for="TitleRu"></label>
+                            <input class="form-control" asp-for="TitleRu" />
+                            <span class="text-danger" asp-validation-for="TitleRu"></span>
+                        </div>
+                        @if (Model.PageName == "services")
+                        {
+                            <div class="form-group col-md-4">
+                                <label asp-for="DescriptionAz"></label>
+                                <textarea class="form-control" asp-for="DescriptionAz"></textarea>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label asp-for="DescriptionEn"></label>
+                                <textarea class="form-control" asp-for="DescriptionEn"></textarea>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label asp-for="DescriptionRu"></label>
+                                <textarea class="form-control" asp-for="DescriptionRu"></textarea>
+                            </div>
+                        }
+                        @if (Model.PageName == "homepage" || Model.PageName == "project" || Model.PageName == "services")
+                        {
+                            <div class="form-group col-md-12">
+                                <label asp-for="Image"></label>
+                                <input asp-for="Image" type="hidden" id="thumbnail" class="form-control" />
+                                <img src="~/img/@Model.Image" style="height:740px;width:1000px;" />
+                                <span class="text-danger" asp-validation-for="Image"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label asp-for="ImageFile"></label>
+                                <input type="file" class="form-control" asp-for="ImageFile" accept="image/*" />
+                                <span class="text-danger" asp-validation-for="ImageFile"></span>
+                            </div>
+                        }
+                        <div class="form-group col-md-12">
+                            <button type="submit" class="btn btn-primary"><span class="fas fa-save"></span> Yadda saxla</button>
+                            <a class="btn btn-info" asp-area="admin" asp-controller="statics" asp-action="homepagesettings"><span class="fas fa-arrow-left"></span> Geri</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

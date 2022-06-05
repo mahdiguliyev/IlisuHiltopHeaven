@@ -1,0 +1,70 @@
+﻿@model IlisuHiltopHeaven.Presentation.Areas.Admin.Models.AdvantageOfPurchasingViewModel
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Əldə Etmənin Üstünlükləri";
+}
+<ol class="breadcrumb mb-3 mt-2">
+    <li class="breadcrumb-item"><a asp-area="admin" asp-controller="home" asp-action="index">Admin</a></li>
+    <li class="breadcrumb-item active"><a asp-area="admin" asp-controller="advantageofpurchasing" asp-action="index">Əldə Etmənin Üstünlükləri</a></li>
+</ol>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+        Əldə Etmənin Üstünlükləri
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="advantageOfPurchasingTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Əsas Başlıq</th>
+                        <th>Başlıq 1</th>
+                        <th>Başlıq 2</th>
+                        <th>Başlıq 3</th>
+                        <th>Dil</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Əsas Başlıq</th>
+                        <th>Başlıq 1</th>
+                        <th>Başlıq 2</th>
+                        <th>Başlıq 3</th>
+                        <th>Dil</th>
+                        <th>Əməliyyatlar</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var advantageOfPurchasing in Model.AdvantageOfPurchasings)
+                    {
+                        <tr name="@advantageOfPurchasing.Id">
+                            <td>@advantageOfPurchasing.Id</td>
+                            <td>@advantageOfPurchasing.MainTitle</td>
+                            <td>@advantageOfPurchasing.Title1</td>
+                            <td>@advantageOfPurchasing.Title2</td>
+                            <td>@advantageOfPurchasing.Title3</td>
+                            <td>@advantageOfPurchasing.Language.LanguageCode</td>
+                            <td>
+                                <a asp-area="admin" asp-controller="advantageofpurchasing" asp-action="update" asp-route-id="@advantageOfPurchasing.LanguageGroupId" class="btn btn-primary btn-sm btn-update" data-id="@advantageOfPurchasing.Id"><span class="fas fa-edit"></span></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            const dataTable = $('#advantageOfPurchasingTable').DataTable({});
+        });
+    </script>
+}
+@section Styles{
+
+}

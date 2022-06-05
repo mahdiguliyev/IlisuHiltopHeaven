@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IlisuHiltopHeaven.Data\IlisuHiltopHeaven.Data.csproj" />
+    <ProjectReference Include="..\IlisuHiltopHeaven.Entities\IlisuHiltopHeaven.Entities.csproj" />
+    <ProjectReference Include="..\IlisuHiltopHeaven.Shared\IlisuHiltopHeaven.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

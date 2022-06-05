@@ -1,0 +1,104 @@
+﻿@model IlisuHiltopHeaven.Entities.Concrete.SocialMedia
+@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+
+@inject IViewLocalizer localizer
+@inject IOptions<RequestLocalizationOptions> locOptions
+
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var culture = requestCulture.RequestCulture.Culture;
+    var cultureItems = locOptions.Value.SupportedUICultures
+        .Select(c => new SelectListItem { Value = c.Name, Text = c.DisplayName }).ToList();
+    var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}";
+    var pageName = (string)ViewData["pageUrl"];
+    var pf = pageName;
+}
+
+<!-- SIDEBAR -->
+<div class="overlay"></div>
+<div class="sidebar">
+    <div class="sidebar__header">
+        <div class="sidebar__header--logo">
+            @if (culture.Name.StartsWith("az"))
+            {
+                <a asp-controller="home" asp-action="index"><img src="~/Front/images/Logo_Horizontal_AZE.svg" alt="" /></a>
+            }
+            else if (culture.Name.StartsWith("en"))
+            {
+                <a asp-controller="home" asp-action="index"><img src="~/Front/images/Logo_Horizontal_ENG.svg" alt="" /></a>
+            }
+            else if (culture.Name.StartsWith("ru"))
+            {
+                <a asp-controller="home" asp-action="index"><img src="~/Front/images/Logo_Horizontal_RU.svg" alt="" /></a>
+            }
+        </div>
+        <div class="sidebar__header--close">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <ul class="sidebar__menu">
+        <li class="sidebar__menu--item">
+            <a style="color: @(pageName == "homepage" ? "#b4a990" : "")" asp-controller="home" asp-action="index" class="sidebar__menu--link">@localizer["HomePage"]</a>
+        </li>
+        <li class="sidebar__menu--item">
+            <a style="color: @(pageName == "project" ? "#b4a990" : "")" asp-controller="project" asp-action="index" class="sidebar__menu--link">@localizer["Project"]</a>
+        </li>
+        <li class="sidebar__menu--item">
+            <a style="color: @(pageName == "services" ? "#b4a990" : "")" asp-controller="services" asp-action="index" class="sidebar__menu--link">@localizer["Services"]</a>
+        </li>
+        <li class="sidebar__menu--item">
+            <a style="color: @(pageName == "toure" ? "#b4a990" : "")" asp-controller="toure" asp-action="index" class="sidebar__menu--link">@localizer["Toures"]</a>
+        </li>
+        <li class="sidebar__menu--item">
+            <a style="color: @(pageName == "contact" ? "#b4a990" : "")" asp-controller="contact" asp-action="index" class="sidebar__menu--link">@localizer["Contact"]</a>
+        </li>
+    </ul>
+    <div class="sidebar__lang">
+        @if (culture.Name.StartsWith("az"))
+        {
+            <a asp-controller="language" asp-action="changelanguage" asp-route-culture="@cultureItems.Find(c=>c.Value=="en-US").Value" asp-route-returnUrl="@returnUrl" class="sidebar__lang--item">
+                <img src="~/Front/images/united.svg" alt="" />
+                <span>ENG</span>
+            </a>
+            <a asp-controller="language" asp-action="changelanguage" asp-route-culture="@cultureItems.Find(c=>c.Value=="ru-RU").Value" asp-route-returnUrl="@returnUrl" class="sidebar__lang--item">
+                <img src="~/Front/images/russia.svg" alt="" />
+                <span>RU</span>
+            </a>
+        }
+        else if (culture.Name.StartsWith("en"))
+        {
+            <a asp-controller="language" asp-action="changelanguage" asp-route-culture="@cultureItems.Find(c=>c.Value=="az-Latn-AZ").Value" asp-route-returnUrl="@returnUrl" class="sidebar__lang--item">
+                <img src="~/Front/images/azerbaijan.svg" alt="" />
+                <span>AZ</span>
+            </a>
+            <a asp-controller="language" asp-action="changelanguage" asp-route-culture="@cultureItems.Find(c=>c.Value=="ru-RU").Value" asp-route-returnUrl="@returnUrl" class="sidebar__lang--item">
+                <img src="~/Front/images/russia.svg" alt="" />
+                <span>RU</span>
+            </a>
+        }
+        else if (culture.Name.StartsWith("ru"))
+        {
+            <a asp-controller="language" asp-action="changelanguage" asp-route-culture="@cultureItems.Find(c=>c.Value=="az-Latn-AZ").Value" asp-route-returnUrl="@returnUrl" class="sidebar__lang--item">
+                <img src="~/Front/images/azerbaijan.svg" alt="" />
+                <span>AZ</span>
+            </a>
+            <a asp-controller="language" asp-action="changelanguage" asp-route-culture="@cultureItems.Find(c=>c.Value=="en-US").Value" asp-route-returnUrl="@returnUrl" class="sidebar__lang--item">
+                <img src="~/Front/images/united.svg" alt="" />
+                <span>ENG</span>
+            </a>
+        }
+    </div>
+    <div class="sidebar__btn">
+        <a href="@Model.WhatsappUrl">
+            <svg>
+                <use xlink:href="/Front/images/sprite.svg#icon-whatsapp"></use>
+            </svg>
+            <span>@Model.PhoneNumber</span>
+        </a>
+    </div>
+</div>
+<!-- SIDEBAR -->

@@ -1,0 +1,28 @@
+﻿@model IlisuHiltopHeaven.Presentation.Models.SellConditionsViewModel
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer localizer
+@{
+    Layout = "_LayoutFront";
+    ViewBag.Title = "Satış Şərtləri";
+}
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+@foreach (var sellCondition in Model.SellConditions)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>@sellCondition.Title</h3>
+            </div>
+            <div class="col-md-6">
+                <p>@sellCondition.Description</p>
+            </div>
+        </div>
+    </div>
+}

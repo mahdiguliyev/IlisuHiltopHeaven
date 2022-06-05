@@ -1,0 +1,74 @@
+﻿@model IlisuHiltopHeaven.Presentation.Areas.Admin.Models.ServiceUpdateViewModel
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Xidmət Məlumatlarını Yenilə";
+}
+
+
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <div class="card mt-1 mb-1">
+            <div class="card-header">
+                <h4 class="text-center"><span class="fas fa-edit"></span> Xidmət Məlumatlarını Yenilə </h4>
+            </div>
+            <div class="card-body">
+                <form asp-area="admin" asp-controller="service" asp-action="update" method="post" enctype="multipart/form-data" id="form-generalsettings-update">
+                    @Html.AntiForgeryToken()
+                    <input asp-for="Id" type="hidden" />
+                    <input asp-for="LanguageId" type="hidden" />
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label asp-for="Title"></label>
+                            <input asp-for="Title" class="form-control" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label asp-for="Description"></label>
+                            <textarea asp-for="Description" class="form-control"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label asp-for="PercentageOwner"></label>
+                            <input asp-for="PercentageOwner" class="form-control" />
+                            <span asp-validation-for="PercentageOwner" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label asp-for="PercentageIHH"></label>
+                            <input asp-for="PercentageIHH" class="form-control" />
+                            <span asp-validation-for="PercentageIHH" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label asp-for="Image"></label>
+                            <input asp-for="Image" type="hidden" id="thumbnail" class="form-control" />
+                            <svg class="services__card--icon"><use xlink:href="/Front/images/@Model.Image"></use></svg>
+                            <span class="text-danger" asp-validation-for="Image"></span>
+                        </div>
+                        @*<div class="form-group col-md-12">
+                <label asp-for="LanguageId" for="languageList"></label>
+                <select asp-for="LanguageId" asp-items="@(new SelectList(Model.Languages, "Id", "LanguageCode"))" id="languageList" class="form-control">
+                    <option></option>
+                </select>
+                <span asp-validation-for="LanguageId" class="text-danger"></span>
+            </div>*@
+                        <div class="form-group col-md-12">
+                            <label asp-for="SelectedAdvantages"></label>
+                            <select asp-for="SelectedAdvantages" asp-items="Model.Advantages" class="form-control" multiple>
+                                <option>--- Avantaj Seçin ---</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label asp-for="SelectedHiltopAdvantages"></label>
+                            <select asp-for="SelectedHiltopAdvantages" asp-items="Model.HiltopAdvantages" class="form-control" multiple>
+                                <option>--- Avantaj Seçin ---</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <button type="submit" class="btn btn-primary"><span class="fas fa-save"></span> Yadda saxla</button>
+                            <a class="btn btn-info" asp-area="admin" asp-controller="service" asp-action="index"><span class="fas fa-arrow-left"></span> Geri</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

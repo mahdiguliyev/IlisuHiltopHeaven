@@ -1,0 +1,145 @@
+﻿@model IlisuHiltopHeaven.Presentation.Areas.Admin.Models.HousingProjectUpdateViewModel
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Mənzillərin Layihəsi Məlumatlarını Yenilə";
+}
+
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <div class="card mt-1 mb-1">
+            <div class="card-header">
+                <h4 class="text-center"><span class="fas fa-edit"></span> Mənzillərin Layihəsi Məlumatlarını Yenilə </h4>
+            </div>
+            <div class="card-body">
+                <form asp-area="admin" asp-controller="housingproject" asp-action="update" method="post" enctype="multipart/form-data" id="form-generalsettings-update">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="LanguageGroupId" value="@(Model?.LanguageGroupId == null ? "" : Model.LanguageGroupId.ToString())" />
+                    @*<input asp-for="Id" type="hidden" />*@
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <h3>Az dili</h3>
+                            <label asp-for="MainTitleAz"></label>
+                            <input asp-for="MainTitleAz" type="text" class="form-control" />
+                            <span asp-validation-for="MainTitleAz" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <h3>Eng dili</h3>
+                            <label asp-for="MainTitleEn"></label>
+                            <input asp-for="MainTitleEn" type="text" class="form-control" />
+                            <span asp-validation-for="MainTitleEn" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <h3>Rus dili</h3>
+                            <label asp-for="MainTitleRu"></label>
+                            <input asp-for="MainTitleRu" type="text" class="form-control" />
+                            <span asp-validation-for="MainTitleRu" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="DescriptionAz"></label>
+                            <textarea asp-for="DescriptionAz" id="DescAz" class="form-control"></textarea>
+                            <span asp-validation-for="DescriptionAz" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="DescriptionEn"></label>
+                            <textarea asp-for="DescriptionEn" id="DescEn" class="form-control"></textarea>
+                            <span asp-validation-for="DescriptionEn" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="DescriptionRu"></label>
+                            <textarea asp-for="DescriptionRu" id="DescRu" class="form-control"></textarea>
+                            <span asp-validation-for="DescriptionRu" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="floorAz1"></label>
+                            <input asp-for="floorAz1" type="text" class="form-control" />
+                            <span asp-validation-for="floorAz1" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="floorEn1"></label>
+                            <input asp-for="floorEn1" type="text" class="form-control" />
+                            <span asp-validation-for="floorEn1" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="floorRu1"></label>
+                            <input asp-for="floorRu1" type="text" class="form-control" />
+                            <span asp-validation-for="floorRu1" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="floorAz2"></label>
+                            <input asp-for="floorAz2" type="text" class="form-control" />
+                            <span asp-validation-for="floorAz2" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="floorEn2"></label>
+                            <input asp-for="floorEn2" type="text" class="form-control" />
+                            <span asp-validation-for="floorEn2" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="floorRu2"></label>
+                            <input asp-for="floorRu2" type="text" class="form-control" />
+                            <span asp-validation-for="floorRu2" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="floorAz3"></label>
+                            <input asp-for="floorAz3" type="text" class="form-control" />
+                            <span asp-validation-for="floorAz3" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="floorEn3"></label>
+                            <input asp-for="floorEn3" type="text" class="form-control" />
+                            <span asp-validation-for="floorEn3" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="floorRu3"></label>
+                            <input asp-for="floorRu3" type="text" class="form-control" />
+                            <span asp-validation-for="floorRu3" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="ImageFileOne"></label>
+                            <input asp-for="ImageFileOne" type="file" id="image" accept="image/*" class="form-control-file" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="Image1"></label>
+                            <input asp-for="Image1" type="hidden" id="thumbnail" class="form-control" />
+                            <img src="~/img/@Model.Image1" style="height:240px;width:400px;" />
+                            <span class="text-danger" asp-validation-for="Image1"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="ImageFileTwo"></label>
+                            <input asp-for="ImageFileTwo" type="file" id="image" accept="image/*" class="form-control-file" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="Image2"></label>
+                            <input asp-for="Image2" type="hidden" id="thumbnail" class="form-control" />
+                            <img src="~/img/@Model.Image2" style="height:240px;width:400px;" />
+                            <span class="text-danger" asp-validation-for="Image2"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="ImageFileThree"></label>
+                            <input asp-for="ImageFileThree" type="file" id="image" accept="image/*" class="form-control-file" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="Image3"></label>
+                            <input asp-for="Image3" type="hidden" id="thumbnail" class="form-control" />
+                            <img src="~/img/@Model.Image3" style="height:240px;width:400px;" />
+                            <span class="text-danger" asp-validation-for="Image3"></span>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <button type="submit" class="btn btn-primary"><span class="fas fa-save"></span> Yadda saxla</button>
+                            <a class="btn btn-info" asp-area="admin" asp-controller="home" asp-action="index"><span class="fas fa-arrow-left"></span> Geri</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Front/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+        CKEDITOR.replace('DescAz');
+        CKEDITOR.replace('DescEn');
+        CKEDITOR.replace('DescRu');
+    </script>
+}
